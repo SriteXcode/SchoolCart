@@ -381,17 +381,19 @@ export default function Navbar({ currentPage, onNavigate }) {
           )}
 
           {/* Cart Icon with Live Count */}
-          <button
-            className="relative p-2 rounded-full text-brand-teal hover:bg-brand-teal/5 transition-colors cursor-pointer"
-            title="Shopping Cart"
-            onClick={() => setIsCartOpen(true)}
-            aria-label="Cart"
-          >
-            <ShoppingCart size={20} />
-            <span className="absolute top-1 right-1 bg-brand-yellow text-brand-teal-dark text-[10px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white shadow-xs">
-              {totalItemsCount}
-            </span>
-          </button>
+          {isAuthenticated && (
+            <button
+              className="relative p-2 rounded-full text-brand-teal hover:bg-brand-teal/5 transition-colors cursor-pointer"
+              title="Shopping Cart"
+              onClick={() => setIsCartOpen(true)}
+              aria-label="Cart"
+            >
+              <ShoppingCart size={20} />
+              <span className="absolute top-1 right-1 bg-brand-yellow text-brand-teal-dark text-[10px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white shadow-xs">
+                {totalItemsCount}
+              </span>
+            </button>
+          )}
 
           {/* Mobile Menu Toggle */}
           <button
