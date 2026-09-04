@@ -154,3 +154,38 @@
   --container-padding: var(--space-lg);
   --header-height: 76px;
 }
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background-color: #fafbf8;
+  background-image: url('/images/bgimg.jpg');
+  background-position: top center;
+  background-repeat: repeat-y;
+  background-size: 100% auto;
+}
+
+main > div[class*="bg-white"],
+main > section[class*="bg-white"],
+main > div > section[class*="bg-white"] {
+  background-color: color-mix(in srgb, white 78%, transparent) !important;
+}
+
+main > div[class*="bg-gray"],
+main > section[class*="bg-gray"],
+main > div > section[class*="bg-gray"] {
+  background-color: color-mix(in srgb, #f8fafb 78%, transparent) !important;
+}
+
+@media (min-width: 1024px) {
+  body {
+    background-attachment: fixed;
+    background-position: center top;
+    background-repeat: repeat;
+    background-size: 736px auto;
+  }
+}

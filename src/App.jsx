@@ -48,7 +48,7 @@ function MainStore() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-gray-900 font-sans selection:bg-brand-yellow/30 selection:text-brand-teal">
+    <div className="min-h-screen flex flex-col text-gray-900 font-sans selection:bg-brand-yellow/30 selection:text-brand-teal">
       {/* Top Banner with announcements */}
       <TopAnnouncementBar />
 
@@ -64,7 +64,7 @@ function MainStore() {
           <>
             <HeroSection onNavigate={navigateTo} />
 
-            <FeaturesBar />
+
 
             <CategorySection
               activeCategory={activeCategory}
@@ -82,6 +82,8 @@ function MainStore() {
             />
 
             <PromoBanners />
+            <FeaturesBar />
+
 
             <NewsletterSection />
           </>
