@@ -295,27 +295,29 @@ export default function Navbar({ currentPage, onNavigate }) {
         {/* Actions (Wishlist, User, Cart) */}
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Wishlist Button */}
-          <button
-            className={`relative p-2 rounded-full transition-all duration-200 active:scale-75 cursor-pointer ${
-              isWishlistOpen
-                ? 'text-brand-pink bg-pink-50 ring-2 ring-brand-pink/20 shadow-xs'
-                : 'text-brand-teal hover:bg-brand-teal/5'
-            }`}
-            title={`My Liked Items (${wishlist.length})`}
-            onClick={() => setIsWishlistOpen(true)}
-            aria-label="Open Wishlist Drawer"
-          >
-            <Heart
-              size={20}
-              fill={wishlist.length > 0 ? 'currentColor' : 'none'}
-              className={wishlist.length > 0 ? 'text-brand-pink' : ''}
-            />
-            {wishlist.length > 0 && (
-              <span className="absolute top-1 right-1 bg-brand-pink text-white text-[10px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white shadow-xs">
-                {wishlist.length}
-              </span>
-            )}
-          </button>
+          {isAuthenticated && (
+            <button
+              className={`relative p-2 rounded-full transition-all duration-200 active:scale-75 cursor-pointer ${
+                isWishlistOpen
+                  ? 'text-brand-pink bg-pink-50 ring-2 ring-brand-pink/20 shadow-xs'
+                  : 'text-brand-teal hover:bg-brand-teal/5'
+              }`}
+              title={`My Liked Items (${wishlist.length})`}
+              onClick={() => setIsWishlistOpen(true)}
+              aria-label="Open Wishlist Drawer"
+            >
+              <Heart
+                size={20}
+                fill={wishlist.length > 0 ? 'currentColor' : 'none'}
+                className={wishlist.length > 0 ? 'text-brand-pink' : ''}
+              />
+              {wishlist.length > 0 && (
+                <span className="absolute top-1 right-1 bg-brand-pink text-white text-[10px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white shadow-xs">
+                  {wishlist.length}
+                </span>
+              )}
+            </button>
+          )}
 
           {/* User Account / Profile Actions (Desktop Only) */}
           {isAuthenticated ? (
