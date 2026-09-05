@@ -5,6 +5,7 @@ import {
   Heart,
   ShoppingCart,
   Zap,
+  Check,
   CheckCircle2,
   Truck,
   RotateCcw,
@@ -18,7 +19,7 @@ import {
   Ticket
 } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
-import { ALL_PRODUCTS } from '../../data/mockData';
+import { ALL_PRODUCTS, KIT_BUNDLES } from '../../data/mockData';
 import GrabKitSection from './GrabKitSection';
 
 const FALLBACK_IMAGE = '/images/gel-pen-set.jpg';
@@ -180,6 +181,15 @@ export default function ProductDetailPage({ onNavigate }) {
     (p) => p.id !== selectedProduct.id && p.rating >= 4.8
   ).slice(0, 6);
 
+  const recommendedKits = KIT_BUNDLES
+    .filter((kit) => kit.id !== selectedProduct.id)
+    .sort((firstKit, secondKit) => {
+      const firstMatch = firstKit.school === selectedProduct.school || firstKit.className === selectedProduct.className;
+      const secondMatch = secondKit.school === selectedProduct.school || secondKit.className === selectedProduct.className;
+      return Number(secondMatch) - Number(firstMatch);
+    })
+    .slice(0, 6);
+
   const handleReviewSubmit = (e) => {
     e.preventDefault();
     if (!reviewTitle.trim() || !reviewComment.trim()) {
@@ -210,12 +220,17 @@ export default function ProductDetailPage({ onNavigate }) {
     if (selectedProduct.category === 'kits' && selectedProduct.kitItems) {
       if (selectedBundleItems.length > 0) {
         const selectedProducts = selectedProduct.kitItems.filter((item) => selectedBundleItems.includes(item.id));
-        selectedProducts.forEach((item) => {
-          const matchedProduct = ALL_PRODUCTS.find((product) => Number(product.id) === Number(item.id));
-          addToCart(matchedProduct || { ...item, image: selectedProduct.image, category: 'kits' }, 1);
-        });
+        const bundlePrice = selectedProducts.reduce((sum, item) => sum + item.price, 0);
+        addToCart({
+          ...selectedProduct,
+          id: `kit-${selectedProduct.id}-${selectedBundleItems.slice().sort((a, b) => a - b).join('-')}`,
+          name: `${selectedProduct.name} (Custom Bundle)`,
+          price: bundlePrice,
+          kitItems: selectedProducts,
+          bundleType: 'kit'
+        }, quantity);
       } else {
-        addToCart(selectedProduct, quantity);
+        addToCart({ ...selectedProduct, bundleType: 'kit' }, quantity);
       }
     } else {
       addToCart(selectedProduct, quantity);
@@ -245,12 +260,15 @@ export default function ProductDetailPage({ onNavigate }) {
         </div>
 
         {/* Scrollable Container */}
-        <div className="flex overflow-x-auto gap-4 pb-4 hide-scrollbar snap-x snap-mandatory">
+        <div
+          className="flex flex-nowrap overflow-x-auto gap-4 pb-4 hide-scrollbar snap-x snap-mandatory touch-pan-x scroll-smooth"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
           {items.map((rec) => (
             <div
               key={rec.id}
               onClick={() => openProductDetails(rec)}
-              className="min-w-[160px] sm:min-w-[180px] snap-start p-3 rounded-2xl border border-gray-200 bg-white hover:border-brand-teal/30 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group"
+              className="min-w-[160px] sm:min-w-[180px] shrink-0 snap-start p-3 rounded-2xl border border-gray-200 bg-white hover:border-brand-teal/30 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group"
             >
               <div>
                 <div className="relative w-full pt-[75%] rounded-xl overflow-hidden bg-gray-50 mb-3">
@@ -267,6 +285,12 @@ export default function ProductDetailPage({ onNavigate }) {
                 <h4 className="font-display font-bold text-xs text-gray-900 group-hover:text-brand-teal line-clamp-1">
                   {rec.name}
                 </h4>
+                {rec.category === 'kits' && (
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <span className="text-[9px] font-extrabold uppercase text-brand-teal truncate">{rec.school}</span>
+                    <span className="text-[9px] font-bold text-brand-pink whitespace-nowrap">{rec.className}</span>
+                  </div>
+                )}
                 <p className="text-[10px] text-gray-500 line-clamp-1 mt-0.5">
                   {rec.subtitle}
                 </p>
@@ -284,7 +308,7 @@ export default function ProductDetailPage({ onNavigate }) {
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        addToCart(rec, 1);
+                        addToCart(rec.category === 'kits' ? { ...rec, bundleType: 'kit' } : rec, 1);
                       }}
                       className={`px-2 py-1 rounded-lg font-bold text-[10px] flex items-center gap-1 transition-all cursor-pointer ${
                         recCount > 0
@@ -463,6 +487,19 @@ export default function ProductDetailPage({ onNavigate }) {
                   <p className="text-xs sm:text-sm text-gray-600 mt-1.5 leading-relaxed">
                     {selectedProduct.subtitle}
                   </p>
+                  {selectedProduct.category === 'kits' && (
+                    <div className="flex flex-wrap items-center gap-2 mt-3">
+                      <span className="text-[11px] font-extrabold uppercase tracking-wider text-brand-teal bg-brand-teal/10 px-2.5 py-1 rounded-full">
+                        {selectedProduct.school || 'Any School'}
+                      </span>
+                      <span className="text-[11px] font-bold text-brand-pink bg-brand-pink/10 px-2.5 py-1 rounded-full">
+                        {selectedProduct.className || 'All Classes'}
+                      </span>
+                      <span className="text-[11px] font-bold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">
+                        {selectedProduct.kitItems?.length || 0} products in bundle
+                      </span>
+                    </div>
+                  )}
 
                   {/* Rating summary */}
                   <div className="flex items-center gap-2.5 mt-3 text-xs">
@@ -706,6 +743,14 @@ export default function ProductDetailPage({ onNavigate }) {
 
             {/* RECOMMENDATIONS SECTIONS */}
             <div className="mt-10 pt-8 border-t border-gray-100">
+              {renderRecommendationRow(
+                'Recommended Kits',
+                selectedProduct.category === 'kits'
+                  ? 'More school and class bundles you may want to explore.'
+                  : 'Complete your stationery order with a school-ready bundle.',
+                recommendedKits
+              )}
+
               {renderRecommendationRow(
                 'Complete Your Kit',
                 'Complementary student study kits & companion stationery.',

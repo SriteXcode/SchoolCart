@@ -99,6 +99,11 @@ export default function CartDrawer({ onNavigate }) {
                 <div className="flex-grow">
                   <h4 className="text-sm font-bold text-brand-teal leading-snug line-clamp-1">{item.name}</h4>
                   <div className="text-xs font-extrabold text-brand-teal mt-0.5">₹{item.price}</div>
+                  {item.bundleType === 'kit' && item.kitItems?.length > 0 && (
+                    <div className="text-[10px] text-gray-500 mt-1 line-clamp-2">
+                      Includes: {item.kitItems.map((kitItem) => kitItem.name).join(', ')}
+                    </div>
+                  )}
 
                   <div className="flex items-center justify-between mt-2">
                     {/* Stepper */}
