@@ -110,6 +110,15 @@ export const CATEGORIES = [
     bgColor: 'var(--color-brand-pink-subtle)',
     icon: 'Gift',
     imageUrl: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=300&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 'kits',
+    name: 'KITS',
+    itemCount: '12+ Bundles',
+    accentColor: 'var(--color-brand-ochre)',
+    bgColor: 'var(--color-brand-ochre-subtle)',
+    icon: 'Package',
+    imageUrl: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=300&auto=format&fit=crop&q=80'
   }
 ];
 
@@ -221,8 +230,190 @@ export const BEST_SELLERS = [
 ];
 
 // Expanded 32+ products for the dedicated All Products Infinite Scroll Catalog
+export const KIT_BUNDLES = [
+  {
+    id: 1001,
+    name: 'Back-to-School Starter Kit',
+    school: 'Any School',
+    className: 'Class 5',
+    subtitle: 'Notebook + pen set + planner + organizer',
+    category: 'kits',
+    price: 1249,
+    originalPrice: 1699,
+    discountBadge: 'BUNDLE DEAL',
+    rating: 4.9,
+    reviewsCount: 640,
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=900&auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=900&auto=format&fit=crop&q=80'
+    ],
+    kitItems: [
+      { id: 1, name: 'Minimal Spiral Notebook', price: 199 },
+      { id: 2, name: 'Gel Pen Set (10pcs)', price: 249 },
+      { id: 6, name: 'Classic Academic Planner 2026', price: 549 },
+      { id: 4, name: 'Multi-Function Desk Organizer', price: 499 }
+    ]
+  },
+  {
+    id: 1002,
+    name: 'Board Exam Revision Kit',
+    school: 'Any School',
+    className: 'Class 10',
+    subtitle: 'Math notebook + highlighters + sticky notes + planner',
+    category: 'kits',
+    price: 1099,
+    originalPrice: 1499,
+    discountBadge: 'TOP PICK',
+    rating: 5.0,
+    reviewsCount: 710,
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=900&auto=format&fit=crop&q=80'
+    ],
+    kitItems: [
+      { id: 10, name: 'Graph Grid Math Notebook (3 Pack)', price: 279 },
+      { id: 3, name: 'Pastel Highlighters Set', price: 189 },
+      { id: 8, name: 'Premium Sticky Notes Palette', price: 129 },
+      { id: 19, name: 'Student Habit & Goal Tracker Planner', price: 399 }
+    ]
+  },
+  {
+    id: 1003,
+    name: 'Creative Artist Starter Kit',
+    school: 'Ryan International',
+    className: 'Class 8',
+    subtitle: 'Brush pens + sketch pad + markers + tote',
+    category: 'kits',
+    price: 1499,
+    originalPrice: 2199,
+    discountBadge: 'CREATIVE BUNDLE',
+    rating: 4.9,
+    reviewsCount: 540,
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=900&auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=900&auto=format&fit=crop&q=80'
+    ],
+    kitItems: [
+      { id: 17, name: 'Artist Watercolor Paint Pan Set (36 Colors)', price: 599 },
+      { id: 11, name: 'Calligraphy Brush Pen Set (12 Shades)', price: 449 },
+      { id: 18, name: 'Heavyweight Mixed Media Pad (A4)', price: 329 },
+      { id: 27, name: 'Heavy Canvas Tote Bag with Pen Slots', price: 399 }
+    ]
+  },
+  {
+    id: 1004,
+    name: 'DPS Primary Learning Kit',
+    school: 'Delhi Public School',
+    className: 'Class 3',
+    subtitle: 'Drawing book + jumbo pencils + crayons + activity notebook',
+    category: 'kits',
+    price: 899,
+    originalPrice: 1199,
+    discountBadge: 'PRIMARY PICK',
+    rating: 4.8,
+    reviewsCount: 312,
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=900&auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&auto=format&fit=crop&q=80'
+    ],
+    kitItems: [
+      { id: 9, name: 'Colorful Drawing Book', price: 179 },
+      { id: 2, name: 'Jumbo Pencil Set', price: 199 },
+      { id: 17, name: 'Wax Crayons Set', price: 249 },
+      { id: 1, name: 'Activity Notebook', price: 199 }
+    ]
+  },
+  {
+    id: 1005,
+    name: 'Ryan Middle School Study Kit',
+    school: 'Ryan International',
+    className: 'Class 8',
+    subtitle: 'Subject notebooks + gel pens + index tabs + study planner',
+    category: 'kits',
+    price: 1199,
+    originalPrice: 1599,
+    discountBadge: 'STUDY BUNDLE',
+    rating: 4.8,
+    reviewsCount: 428,
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=900&auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=900&auto=format&fit=crop&q=80'
+    ],
+    kitItems: [
+      { id: 10, name: 'Subject Notebook Set', price: 329 },
+      { id: 2, name: 'Gel Pen Set', price: 249 },
+      { id: 8, name: 'Index Tabs and Sticky Notes', price: 149 },
+      { id: 6, name: 'Study Planner', price: 399 }
+    ]
+  },
+  {
+    id: 1006,
+    name: 'Kendriya Vidyalaya Exam Kit',
+    school: 'Kendriya Vidyalaya',
+    className: 'Class 10',
+    subtitle: 'Graph notebook + revision cards + highlighters + geometry set',
+    category: 'kits',
+    price: 999,
+    originalPrice: 1399,
+    discountBadge: 'EXAM READY',
+    rating: 4.9,
+    reviewsCount: 516,
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=900&auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1588072432836-e10032774350?w=900&auto=format&fit=crop&q=80'
+    ],
+    kitItems: [
+      { id: 10, name: 'Graph Grid Math Notebook', price: 279 },
+      { id: 3, name: 'Pastel Highlighters Set', price: 189 },
+      { id: 8, name: 'Revision Cards', price: 159 },
+      { id: 4, name: 'Geometry and Math Set', price: 299 }
+    ]
+  },
+  {
+    id: 1007,
+    name: 'DPS Senior Commerce Kit',
+    school: 'Delhi Public School',
+    className: 'Class 12',
+    subtitle: 'Ledger notebook + planner + sticky notes + premium pens',
+    category: 'kits',
+    price: 1299,
+    originalPrice: 1749,
+    discountBadge: 'SENIOR KIT',
+    rating: 4.9,
+    reviewsCount: 286,
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=900&auto=format&fit=crop&q=80',
+    images: [
+      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=900&auto=format&fit=crop&q=80'
+    ],
+    kitItems: [
+      { id: 1, name: 'Hardbound Ledger Notebook', price: 349 },
+      { id: 6, name: 'Academic Planner', price: 549 },
+      { id: 8, name: 'Premium Sticky Notes', price: 129 },
+      { id: 2, name: 'Premium Gel Pen Set', price: 249 }
+    ]
+  }
+];
+
 export const ALL_PRODUCTS = [
   ...BEST_SELLERS,
+  ...KIT_BUNDLES,
   {
     id: 9,
     name: 'Hardbound Dotted Bullet Journal',

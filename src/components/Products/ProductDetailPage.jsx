@@ -21,6 +21,53 @@ import { useCart } from '../../context/CartContext';
 import { ALL_PRODUCTS } from '../../data/mockData';
 import GrabKitSection from './GrabKitSection';
 
+const FALLBACK_IMAGE = '/images/gel-pen-set.jpg';
+
+const CATEGORY_GALLERY_MAP = {
+  notebooks: [
+    'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1000&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=1000&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=1000&auto=format&fit=crop&q=80'
+  ],
+  pens: [
+    '/images/gel-pen-set.jpg',
+    '/images/pastel-highlighters.jpg',
+    'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1000&auto=format&fit=crop&q=80'
+  ],
+  supplies: [
+    'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=1000&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=1000&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=1000&auto=format&fit=crop&q=80'
+  ],
+  bags: [
+    'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=1000&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=1000&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=1000&auto=format&fit=crop&q=80'
+  ],
+  art: [
+    'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1000&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=1000&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=1000&auto=format&fit=crop&q=80'
+  ],
+  planners: [
+    'https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=1000&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=1000&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?w=1000&auto=format&fit=crop&q=80'
+  ],
+  gifts: [
+    'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=1000&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?w=1000&auto=format&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=1000&auto=format&fit=crop&q=80'
+  ]
+};
+
+const getProductGallery = (product) => {
+  const productGallery = Array.isArray(product?.images) ? product.images : [];
+  const categoryGallery = CATEGORY_GALLERY_MAP[product?.category] || [];
+  const gallery = [product?.image, ...productGallery, ...categoryGallery].filter(Boolean);
+  return [...new Set(gallery)].slice(0, 5);
+};
+
 export default function ProductDetailPage({ onNavigate }) {
   const {
     selectedProduct,
@@ -40,6 +87,8 @@ export default function ProductDetailPage({ onNavigate }) {
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('specs'); // 'specs' | 'details' | 'delivery'
   const [helpfulVotes, setHelpfulVotes] = useState({});
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [selectedBundleItems, setSelectedBundleItems] = useState([]);
 
   // Review Form State
   const [showReviewForm, setShowReviewForm] = useState(false);
@@ -63,10 +112,13 @@ export default function ProductDetailPage({ onNavigate }) {
   }, [userProfile]);
 
   // Reset quantity and scroll position when product changes
+  const productGallery = getProductGallery(selectedProduct);
+
   useEffect(() => {
     if (selectedProduct) {
       setQuantity(1);
       setShowReviewForm(false);
+      setActiveImageIndex(0);
       window.scrollTo(0, 0);
     }
   }, [selectedProduct]);
@@ -83,6 +135,9 @@ export default function ProductDetailPage({ onNavigate }) {
   const isWishlisted = wishlist.some((id) => Number(id) === Number(selectedProduct.id));
   const cartItem = cartItems?.find((item) => Number(item.id) === Number(selectedProduct.id));
   const countInCart = cartItem ? cartItem.quantity : 0;
+  const bundleTotal = (selectedProduct.kitItems || []).reduce((sum, item) => {
+    return sum + (selectedBundleItems.includes(item.id) ? item.price : 0);
+  }, 0);
 
   // Reviews for this product
   const reviewsList = productReviews[selectedProduct.id] || [
@@ -152,7 +207,19 @@ export default function ProductDetailPage({ onNavigate }) {
   };
 
   const handleBuyNow = () => {
-    addToCart(selectedProduct, quantity);
+    if (selectedProduct.category === 'kits' && selectedProduct.kitItems) {
+      if (selectedBundleItems.length > 0) {
+        const selectedProducts = selectedProduct.kitItems.filter((item) => selectedBundleItems.includes(item.id));
+        selectedProducts.forEach((item) => {
+          const matchedProduct = ALL_PRODUCTS.find((product) => Number(product.id) === Number(item.id));
+          addToCart(matchedProduct || { ...item, image: selectedProduct.image, category: 'kits' }, 1);
+        });
+      } else {
+        addToCart(selectedProduct, quantity);
+      }
+    } else {
+      addToCart(selectedProduct, quantity);
+    }
     setIsCartOpen(true);
   };
 
@@ -327,14 +394,40 @@ export default function ProductDetailPage({ onNavigate }) {
                   </button>
 
                   <img
-                    src={selectedProduct.image}
+                    src={productGallery[activeImageIndex] || selectedProduct.image || FALLBACK_IMAGE}
                     alt={selectedProduct.name}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     onError={(e) => {
                       e.currentTarget.onerror = null;
-                      e.currentTarget.src = '/images/gel-pen-set.jpg';
+                      e.currentTarget.src = FALLBACK_IMAGE;
                     }}
                   />
+                </div>
+
+                <div className="grid grid-cols-4 gap-2 sm:gap-2.5">
+                  {productGallery.map((image, index) => (
+                    <button
+                      key={`${selectedProduct.id}-${index}`}
+                      type="button"
+                      onClick={() => setActiveImageIndex(index)}
+                      className={`relative overflow-hidden rounded-xl border transition-all cursor-pointer ${
+                        activeImageIndex === index
+                          ? 'border-brand-teal ring-2 ring-brand-teal/20 shadow-xs'
+                          : 'border-gray-200 hover:border-brand-teal/30'
+                      }`}
+                      aria-label={`View product image ${index + 1}`}
+                    >
+                      <img
+                        src={image}
+                        alt={`${selectedProduct.name} view ${index + 1}`}
+                        className="h-16 w-full object-cover"
+                        onError={(e) => {
+                          e.currentTarget.onerror = null;
+                          e.currentTarget.src = FALLBACK_IMAGE;
+                        }}
+                      />
+                    </button>
+                  ))}
                 </div>
 
                 {/* Student Confidence Badges */}
@@ -405,6 +498,42 @@ export default function ProductDetailPage({ onNavigate }) {
                     Inclusive of all taxes. Free student delivery qualifies at ₹499.
                   </p>
                 </div>
+
+                {selectedProduct.category === 'kits' && selectedProduct.kitItems && (
+                  <div className="rounded-2xl border border-brand-teal/20 bg-brand-teal/5 p-4">
+                    <div className="flex items-center justify-between gap-3 mb-3">
+                      <span className="text-xs font-extrabold uppercase tracking-wider text-brand-teal">Build Your Bundle</span>
+                      <span className="text-[11px] font-bold text-gray-600">₹{bundleTotal || selectedProduct.price}</span>
+                    </div>
+                    <div className="space-y-2">
+                      {selectedProduct.kitItems.map((item) => {
+                        const isChecked = selectedBundleItems.includes(item.id);
+                        return (
+                          <button
+                            key={item.id}
+                            type="button"
+                            onClick={() => setSelectedBundleItems((prev) =>
+                              prev.includes(item.id)
+                                ? prev.filter((id) => id !== item.id)
+                                : [...prev, item.id]
+                            )}
+                            className={`w-full flex items-center justify-between rounded-xl border p-2.5 text-left transition-all cursor-pointer ${
+                              isChecked ? 'border-brand-teal bg-white' : 'border-gray-200 bg-white/80 hover:border-brand-teal/30'
+                            }`}
+                          >
+                            <div className="flex items-center gap-3">
+                              <div className={`w-4 h-4 rounded border flex items-center justify-center ${isChecked ? 'bg-brand-teal border-brand-teal text-white' : 'border-gray-300 bg-white'}`}>
+                                <Check size={10} />
+                              </div>
+                              <span className="text-xs font-bold text-gray-700">{item.name}</span>
+                            </div>
+                            <span className="text-[11px] font-bold text-brand-teal">₹{item.price}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
 
                 {/* Quantity Stepper & Subtotal */}
                 <div className="flex items-center justify-between gap-4 pt-1">

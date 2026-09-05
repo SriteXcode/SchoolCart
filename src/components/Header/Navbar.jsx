@@ -36,8 +36,14 @@ function DesktopProfileDropdown({
       {isAuthenticated ? (
         <div className="space-y-2">
           {/* User Profile Header */}
-          <div className="flex items-center gap-2.5 px-3 py-2 bg-brand-teal/5 border border-brand-teal/10 rounded-xl">
-            <div className="w-8 h-8 rounded-full bg-brand-teal text-white flex items-center justify-center font-extrabold text-xs shrink-0">
+          <button 
+            onClick={() => {
+              onNavigate('profile', null, 'profile');
+              onClose();
+            }}
+            className="w-full flex items-center gap-2.5 px-3 py-2 bg-brand-teal/5 border border-brand-teal/10 rounded-xl hover:bg-brand-teal/10 transition-colors cursor-pointer text-left"
+          >
+            <div className="w-8 h-8 rounded-full bg-brand-teal text-white flex items-center justify-center font-extrabold text-xs shrink-0 shadow-sm">
               {userProfile?.name ? userProfile.name.charAt(0).toUpperCase() : 'U'}
             </div>
             <div className="min-w-0 flex-1">
@@ -48,7 +54,7 @@ function DesktopProfileDropdown({
                 {userProfile?.email || 'Verified Student'}
               </p>
             </div>
-          </div>
+          </button>
 
           {/* Quick Nav Links */}
           <div className="space-y-0.5 pt-1">
@@ -438,18 +444,45 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
               onMouseLeave={handleActionProfileLeave}
             >
               <button
-                className={`relative p-2 rounded-full transition-colors cursor-pointer ${
+                type="button"
+                className={`flex items-center gap-2.5 rounded-full border transition-all cursor-pointer ${
                   currentPage === 'profile' || actionProfileOpen
-                    ? 'text-white bg-brand-teal shadow-xs'
-                    : 'text-brand-teal hover:bg-brand-teal/5'
-                }`}
+                    ? 'border-brand-teal bg-brand-teal text-white shadow-xs'
+                    : 'border-gray-200 bg-white text-brand-teal hover:bg-brand-teal/5'
+                } px-2.5 py-1.5`}
                 onClick={(e) => {
                   e.stopPropagation();
                   setActionProfileOpen(!actionProfileOpen);
                 }}
               >
-                <User size={20} />
-                <span className="absolute bottom-1 right-1 w-2 h-2 bg-emerald-500 rounded-full ring-2 ring-white" />
+                <div className="relative flex items-center justify-center">
+                  {userProfile?.avatar ? (
+                    <img
+                      src={userProfile.avatar}
+                      alt={userProfile.name || 'User profile'}
+                      className="w-8 h-8 rounded-full object-cover ring-2 ring-white/80"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-current/10 flex items-center justify-center text-[11px] font-extrabold ring-2 ring-white/80">
+                      {userProfile?.name ? userProfile.name.charAt(0).toUpperCase() : 'U'}
+                    </div>
+                  )}
+                  <span className="absolute bottom-0 right-0 w-2 h-2 bg-emerald-500 rounded-full ring-2 ring-white" />
+                </div>
+
+                <div className="hidden xl:flex flex-col text-left leading-tight min-w-0">
+                  <span className="text-[10px] font-extrabold truncate max-w-[120px]">
+                    {userProfile?.name || 'Student Account'}
+                  </span>
+                  <span className={`text-[9px] truncate max-w-[120px] ${currentPage === 'profile' || actionProfileOpen ? 'text-white/80' : 'text-gray-500'}`}>
+                    {userProfile?.email || 'Verified Student'}
+                  </span>
+                </div>
+
+                <ChevronDown
+                  size={14}
+                  className={`hidden xl:block transition-transform duration-200 ${actionProfileOpen ? 'rotate-180' : ''} ${currentPage === 'profile' || actionProfileOpen ? 'text-white' : 'text-gray-400'}`}
+                />
               </button>
               {actionProfileOpen && (
                 <DesktopProfileDropdown
@@ -558,8 +591,14 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
             <div className="pt-3 mt-2 border-t border-gray-100 space-y-2">
               {isAuthenticated ? (
                 <div className="space-y-2">
-                  <div className="flex items-center gap-2.5 px-3 py-2 bg-brand-teal/5 border border-brand-teal/10 rounded-xl">
-                    <div className="w-8 h-8 rounded-full bg-brand-teal text-white flex items-center justify-center font-extrabold text-xs shrink-0">
+                  <button
+                    onClick={() => {
+                      onNavigate('profile', null, 'profile');
+                      setMobileMenuOpen(false);
+                    }}
+                    className="w-full flex items-center gap-2.5 px-3 py-2 bg-brand-teal/5 border border-brand-teal/10 rounded-xl hover:bg-brand-teal/10 transition-colors cursor-pointer text-left"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-brand-teal text-white flex items-center justify-center font-extrabold text-xs shrink-0 shadow-sm">
                       {userProfile?.name ? userProfile.name.charAt(0).toUpperCase() : 'U'}
                     </div>
                     <div className="min-w-0 flex-1">
@@ -570,7 +609,7 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
                         {userProfile?.email || userProfile?.phone || 'Logged In'}
                       </p>
                     </div>
-                  </div>
+                  </button>
                   <button
                     onClick={() => {
                       onNavigate('profile', null, 'profile');

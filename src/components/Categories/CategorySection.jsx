@@ -24,18 +24,18 @@ export default function CategorySection({ activeCategory, onSelectCategory, onNa
           </button>
         </div>
 
-        {/* Categories: Horizontal X-Axis Scrollable on mobile / Grid on desktop */}
+        {/* Categories: Horizontal X-Axis Scrollable */}
         <div className="relative">
           <div
             ref={scrollContainerRef}
-            className="flex flex-nowrap md:grid md:grid-cols-7 gap-3 sm:gap-4 md:gap-6 overflow-x-auto pb-4 pt-1 px-1 scrollbar-none snap-x snap-mandatory touch-pan-x"
+            className="flex flex-nowrap gap-3 sm:gap-4 md:gap-5 overflow-x-auto pb-4 pt-1 px-1 scrollbar-none snap-x snap-mandatory touch-pan-x scroll-smooth"
           >
             {CATEGORIES.map((cat) => {
               const isSelected = activeCategory === cat.id;
               return (
                 <button
                   key={cat.id}
-                  className={`flex flex-col items-center text-center p-2 rounded-xl transition-all transform hover:-translate-y-1 group shrink-0 min-w-[100px] sm:min-w-[110px] md:min-w-0 snap-center cursor-pointer ${
+                  className={`flex flex-col items-center text-center p-2 rounded-xl transition-all transform hover:-translate-y-1 group shrink-0 min-w-[100px] sm:min-w-[110px] md:min-w-[120px] snap-center cursor-pointer ${
                     isSelected ? 'scale-105' : ''
                   }`}
                   onClick={() => onSelectCategory(cat.id === activeCategory ? null : cat.id)}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   User,
   Heart,
@@ -62,13 +62,16 @@ export default function ProfilePage({ onNavigate, initialTab = 'profile' }) {
   }, [initialTab]);
 
   // Editable profile form state
+  const avatarInputRef = useRef(null);
+
   const [formData, setFormData] = useState({
     name: userProfile?.name || 'Ritesh Yadav',
     email: userProfile?.email || 'ritesh.yadav@example.com',
     phone: userProfile?.phone || '+91 98765 43210',
     studentId: userProfile?.studentId || 'SC-2026-8941',
     institution: userProfile?.institution || 'Delhi Technological University',
-    standard: userProfile?.standard || 'Computer Science, 3rd Year'
+    standard: userProfile?.standard || 'Computer Science, 3rd Year',
+    avatar: userProfile?.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80'
   });
 
   // Keep form in sync when userProfile updates
@@ -80,7 +83,8 @@ export default function ProfilePage({ onNavigate, initialTab = 'profile' }) {
         phone: userProfile.phone || '+91 98765 43210',
         studentId: userProfile.studentId || 'SC-2026-8941',
         institution: userProfile.institution || 'Delhi Technological University',
-        standard: userProfile.standard || 'Computer Science, 3rd Year'
+        standard: userProfile.standard || 'Computer Science, 3rd Year',
+        avatar: userProfile.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80'
       });
     }
   }, [userProfile]);
@@ -119,10 +123,27 @@ export default function ProfilePage({ onNavigate, initialTab = 'profile' }) {
         phone: userProfile.phone || '+91 98765 43210',
         studentId: userProfile.studentId || 'SC-2026-8941',
         institution: userProfile.institution || 'Delhi Technological University',
-        standard: userProfile.standard || 'Computer Science, 3rd Year'
+        standard: userProfile.standard || 'Computer Science, 3rd Year',
+        avatar: userProfile.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80'
       });
     }
     setIsEditingProfile(false);
+  };
+
+  const handleAvatarUpload = (event) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const avatarUrl = typeof reader.result === 'string' ? reader.result : '';
+      if (!avatarUrl) return;
+
+      setFormData((prev) => ({ ...prev, avatar: avatarUrl }));
+      updateProfile({ avatar: avatarUrl });
+    };
+    reader.readAsDataURL(file);
+    event.target.value = '';
   };
 
   const handleAddressSubmit = (e) => {
@@ -280,13 +301,29 @@ export default function ProfilePage({ onNavigate, initialTab = 'profile' }) {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="flex items-center gap-4 sm:gap-5">
               <div className="relative">
-                <div className="w-18 h-18 sm:w-22 sm:h-22 rounded-2xl overflow-hidden border-2 border-brand-yellow p-1 bg-white/10 shadow-lg">
+                <button
+                  type="button"
+                  onClick={() => avatarInputRef.current?.click()}
+                  className="group relative w-18 h-18 sm:w-22 sm:h-22 rounded-2xl overflow-hidden border-2 border-brand-yellow p-1 bg-white/10 shadow-lg cursor-pointer transition-transform hover:scale-[1.02]"
+                  aria-label="Change profile image"
+                  title="Change profile image"
+                >
                   <img
-                    src={userProfile?.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80'}
+                    src={formData.avatar || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80'}
                     alt={formData.name}
                     className="w-full h-full object-cover rounded-xl"
                   />
-                </div>
+                  <span className="absolute inset-0 flex items-center justify-center bg-slate-900/20 opacity-0 group-hover:opacity-100 transition-opacity text-white text-[10px] font-bold uppercase tracking-wide">
+                    Edit
+                  </span>
+                </button>
+                <input
+                  ref={avatarInputRef}
+                  type="file"
+                  accept="image/*"
+                  onChange={handleAvatarUpload}
+                  className="hidden"
+                />
                 <span className="absolute -bottom-1 -right-1 bg-brand-yellow text-brand-teal-dark font-extrabold text-[10px] px-2 py-0.5 rounded-full shadow-xs uppercase tracking-wider">
                   STUDENT
                 </span>
