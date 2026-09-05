@@ -47,34 +47,18 @@ export default function ProductCarouselRow({ title, products, onViewAll, autoScr
         onMouseLeave={() => isHoveredRef.current = false}
       >
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-          <h2 className="font-display text-xl md:text-2xl font-extrabold tracking-wider uppercase text-brand-teal">
+        <div className="flex flex-row items-center justify-between gap-2 sm:gap-4 mb-6">
+          <h2 className="font-display text-lg sm:text-xl md:text-2xl font-extrabold tracking-wider uppercase text-brand-teal line-clamp-1">
             {title}
           </h2>
           
-
-          <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-2 mr-4">
-              <button
-                onClick={() => scroll('left')}
-                className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-brand-teal hover:text-white hover:border-brand-teal transition-all cursor-pointer"
-              >
-                <ChevronLeft size={18} />
-              </button>
-              <button
-                onClick={() => scroll('right')}
-                className="w-8 h-8 rounded-full bg-gray-50 border border-gray-200 flex items-center justify-center text-gray-500 hover:bg-brand-teal hover:text-white hover:border-brand-teal transition-all cursor-pointer"
-              >
-                <ChevronRight size={18} />
-              </button>
-            </div>
-            
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <button
               onClick={() => onViewAll && onViewAll()}
-              className="text-xs font-bold text-brand-teal hover:text-brand-pink transition-colors inline-flex items-center gap-1 uppercase tracking-wider cursor-pointer bg-brand-teal/5 px-3 py-1.5 rounded-lg"
+              className="text-[10px] sm:text-xs font-bold text-brand-teal hover:text-brand-pink transition-colors inline-flex items-center gap-1 uppercase tracking-wider cursor-pointer bg-brand-teal/5 px-2.5 sm:px-3 py-1.5 rounded-lg"
             >
               <span>VIEW ALL</span>
-              <ArrowRight size={14} />
+              <ArrowRight size={12} className="sm:w-[14px] sm:h-[14px]" />
             </button>
           </div>
         </div>
