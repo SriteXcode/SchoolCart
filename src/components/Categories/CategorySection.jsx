@@ -1,18 +1,27 @@
 import React, { useRef } from 'react';
+import { ArrowRight } from 'lucide-react';
 import { CATEGORIES } from '../../data/mockData';
 
-export default function CategorySection({ activeCategory, onSelectCategory }) {
+export default function CategorySection({ activeCategory, onSelectCategory, onNavigate }) {
   const scrollContainerRef = useRef(null);
 
   return (
     <section className="py-10 md:py-14 bg-white border-b border-gray-100 overflow-hidden" id="categories">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center mb-6 md:mb-10">
-          <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold tracking-wider uppercase text-brand-teal inline-block relative pb-2">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 md:mb-10 text-center sm:text-left">
+          <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold tracking-wider uppercase text-brand-teal inline-block relative pb-2 mx-auto sm:mx-0">
             SHOP BY CATEGORY
-            <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-brand-yellow rounded-full" />
+            <span className="absolute bottom-0 left-1/2 sm:left-0 transform -translate-x-1/2 sm:translate-x-0 w-12 h-0.5 bg-brand-yellow rounded-full" />
           </h2>
+          
+          <button
+            onClick={() => onNavigate && onNavigate('all-categories')}
+            className="text-xs font-bold text-brand-teal hover:text-brand-pink transition-colors inline-flex items-center justify-center gap-1 uppercase tracking-wider cursor-pointer mx-auto sm:mx-0 bg-brand-teal/5 hover:bg-brand-teal/10 px-4 py-2 rounded-xl"
+          >
+            <span>VIEW ALL CATEGORIES</span>
+            <ArrowRight size={14} />
+          </button>
         </div>
 
         {/* Categories: Horizontal X-Axis Scrollable on mobile / Grid on desktop */}

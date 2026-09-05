@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, Sparkles, CheckCircle2, ShoppingBag } from 'lucide-react';
 import { HERO_SLIDES } from '../../data/mockData';
 
 export default function HeroSection({ onNavigate }) {
   const [activeSlide, setActiveSlide] = useState(0);
   const slide = HERO_SLIDES[activeSlide];
+
+  // Auto-scroll functionality
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % HERO_SLIDES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleShopNow = () => {
     if (onNavigate) onNavigate('products');

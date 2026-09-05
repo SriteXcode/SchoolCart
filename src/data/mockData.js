@@ -9,9 +9,9 @@ export const ANNOUNCEMENTS = [
 export const NAV_LINKS = [
   { label: 'Home', view: 'home' },
   { label: 'Categories', view: 'categories' },
-  { label: 'Best Sellers', view: 'bestsellers' },
   { label: 'All Products', view: 'products' },
-  { label: 'About Us', view: 'about' }
+  { label: 'About Us', view: 'about' },
+  { label: 'Contact Us', view: 'contact' }
 ];
 
 export const VALUE_PROPS = [
@@ -555,6 +555,24 @@ export const HERO_SLIDES = [
     secondaryCta: 'PEN KITS',
     badge: 'UP TO 30% OFF',
     image: 'https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?w=800&auto=format&fit=crop&q=80'
+  },
+  {
+    eyebrow: 'EXPRESS YOURSELF',
+    title: 'Premium Art & Craft Supplies',
+    description: 'Bring your imagination to life with our collection of vibrant paints, professional markers, and heavy-weight sketchbooks.',
+    primaryCta: 'SHOP ART',
+    secondaryCta: 'CRAFT KITS',
+    badge: 'CREATIVE ESSENTIALS',
+    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&auto=format&fit=crop&q=80'
+  },
+  {
+    eyebrow: 'BACK TO CAMPUS',
+    title: 'Ergonomic Bags & Smart Organizers',
+    description: 'Carry your world effortlessly. Discover our new range of water-resistant, durable backpacks designed for modern students.',
+    primaryCta: 'VIEW BAGS',
+    secondaryCta: 'ORGANIZERS',
+    badge: 'NEW ARRIVALS',
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&auto=format&fit=crop&q=80'
   }
 ];
 

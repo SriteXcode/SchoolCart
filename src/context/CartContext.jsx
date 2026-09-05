@@ -187,6 +187,52 @@ export function CartProvider({ children }) {
   // Active coupon discount state
   const [appliedCoupon, setAppliedCoupon] = useState(null);
 
+  // Seller states
+  const [sellerStatus, setSellerStatus] = useState(() => {
+    try {
+      const saved = localStorage.getItem('school_cart_seller_status');
+      return saved ? JSON.parse(saved) : null; // null | 'pending' | 'approved'
+    } catch {
+      return null;
+    }
+  });
+
+  const [sellerProfile, setSellerProfile] = useState(() => {
+    try {
+      const saved = localStorage.getItem('school_cart_seller_profile');
+      return saved ? JSON.parse(saved) : null;
+    } catch {
+      return null;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('school_cart_seller_status', JSON.stringify(sellerStatus));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [sellerStatus]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('school_cart_seller_profile', JSON.stringify(sellerProfile));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [sellerProfile]);
+
+  const submitSellerApplication = (data) => {
+    setSellerProfile(data);
+    setSellerStatus('pending');
+    showToast('Seller application submitted successfully! 🚀');
+  };
+
+  const approveSellerApplication = () => {
+    setSellerStatus('approved');
+    showToast('🎉 Congratulations! You are now an approved seller.');
+  };
+
   // Sync to localStorage
   useEffect(() => {
     try {
@@ -621,7 +667,11 @@ export function CartProvider({ children }) {
         applyCoupon,
         removeCoupon,
         clearCart,
-        placeOrder
+        placeOrder,
+        sellerStatus,
+        sellerProfile,
+        submitSellerApplication,
+        approveSellerApplication
       }}
     >
       {children}

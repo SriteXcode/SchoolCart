@@ -10,7 +10,7 @@ import { CATEGORIES } from '../../data/mockData';
 import { useCart } from '../../context/CartContext';
 
 export default function Footer({ onNavigate }) {
-  const { isAuthenticated } = useCart();
+  const { isAuthenticated, sellerStatus } = useCart();
   return (
     <footer className="bg-brand-teal text-white pt-16 border-t border-white/10" id="footer">
       <div className="container mx-auto px-4">
@@ -135,10 +135,10 @@ export default function Footer({ onNavigate }) {
               <li><a href="#" className="hover:text-brand-yellow transition-colors">Student Ambass.</a></li>
               <li>
                 <button
-                  onClick={() => (onNavigate ? onNavigate('become-seller') : (window.location.href = '/become-seller'))}
-                  className="hover:text-brand-yellow transition-colors text-left cursor-pointer"
+                  onClick={() => onNavigate && onNavigate(sellerStatus === 'approved' ? 'seller-dashboard' : 'seller-registration')}
+                  className="text-brand-yellow hover:text-white font-bold transition-colors text-left cursor-pointer"
                 >
-                  Become a seller
+                  {sellerStatus === 'approved' ? 'Seller Dashboard' : 'Become a Seller!'}
                 </button>
               </li>
               <li><a href="#" className="hover:text-brand-yellow transition-colors">School Partners</a></li>

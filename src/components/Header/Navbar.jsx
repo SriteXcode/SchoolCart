@@ -1,8 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Heart, ShoppingCart, User, Menu, X, ChevronDown, LogOut, LogIn, UserPlus, Package } from 'lucide-react';
+import { Heart, ShoppingCart, User, Menu, X, ChevronDown, LogOut, LogIn, UserPlus, Package, Store, ArrowRight } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
-import { NAV_LINKS } from '../../data/mockData';
+import { NAV_LINKS, CATEGORIES } from '../../data/mockData';
+import GlobalSearch from './GlobalSearch';
 
+const MEGA_MENU_DATA = {
+  notebooks: ['Spiral Notebooks', 'Hardcover Journals', 'Dotted & Grid', 'Subject Notebooks'],
+  pens: ['Gel & Ballpoint Pens', 'Highlighters', 'Markers & Fineliners', 'Mechanical Pencils'],
+  supplies: ['Desk Organizers', 'Staplers & Clips', 'Sticky Notes', 'Geometry Sets'],
+  bags: ['School Backpacks', 'Laptop Bags', 'Pencil Cases', 'Tote Bags'],
+  art: ['Paints & Watercolors', 'Sketchbooks', 'Brushes & Tools', 'Crafting Kits'],
+  planners: ['Academic Planners', 'Daily Journals', 'Weekly Desk Pads', 'Wall Calendars'],
+  gifts: ['Student Kits', 'Teacher Appreciation', 'Artist Boxes', 'Festive Hampers']
+};
+
+// Extracted from original Navbar DesktopProfileDropdown
 function DesktopProfileDropdown({
   isAuthenticated,
   userProfile,
@@ -110,7 +122,7 @@ function DesktopProfileDropdown({
   );
 }
 
-export default function Navbar({ currentPage, onNavigate }) {
+export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchChange }) {
   const {
     totalItemsCount,
     wishlist,
@@ -120,99 +132,103 @@ export default function Navbar({ currentPage, onNavigate }) {
     isAuthenticated,
     openAuthModal,
     logout,
-    userProfile
+    userProfile,
   } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
+  // Profile dropdown
   const [actionProfileOpen, setActionProfileOpen] = useState(false);
   const actionProfileRef = useRef(null);
   const profileTimerRef = useRef(null);
-  const [activeHomeSection, setActiveHomeSection] = useState('home'); // 'home' | 'categories' | 'bestsellers'
+  
+  // Mega Menu for Categories
+  const [megaMenuOpen, setMegaMenuOpen] = useState(false);
+  const megaMenuRef = useRef(null);
+  const megaMenuTimerRef = useRef(null);
+  const [categoryClickCount, setCategoryClickCount] = useState(0);
+
+  const [activeHomeSection, setActiveHomeSection] = useState('home');
 
   const handleActionProfileEnter = () => {
-    if (profileTimerRef.current) {
-      clearTimeout(profileTimerRef.current);
-      profileTimerRef.current = null;
-    }
+    if (profileTimerRef.current) clearTimeout(profileTimerRef.current);
     setActionProfileOpen(true);
   };
-
   const handleActionProfileLeave = () => {
-    if (profileTimerRef.current) {
-      clearTimeout(profileTimerRef.current);
-    }
-    profileTimerRef.current = setTimeout(() => {
-      setActionProfileOpen(false);
+    profileTimerRef.current = setTimeout(() => setActionProfileOpen(false), 250);
+  };
+
+  const handleMegaMenuEnter = () => {
+    if (megaMenuTimerRef.current) clearTimeout(megaMenuTimerRef.current);
+    setMegaMenuOpen(true);
+  };
+  const handleMegaMenuLeave = () => {
+    megaMenuTimerRef.current = setTimeout(() => {
+      setMegaMenuOpen(false);
+      setCategoryClickCount(0); // reset on leave
     }, 250);
   };
 
   useEffect(() => {
     function handleClickOutside(e) {
       if (actionProfileRef.current && !actionProfileRef.current.contains(e.target)) {
-        if (profileTimerRef.current) {
-          clearTimeout(profileTimerRef.current);
-          profileTimerRef.current = null;
-        }
         setActionProfileOpen(false);
+      }
+      if (megaMenuRef.current && !megaMenuRef.current.contains(e.target)) {
+        setMegaMenuOpen(false);
+        setCategoryClickCount(0);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      if (profileTimerRef.current) {
-        clearTimeout(profileTimerRef.current);
-      }
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Track active section on home page (ScrollSpy for Home, Categories, Best Sellers)
+  // Track active section on home page
   useEffect(() => {
     if (currentPage !== 'home') return;
-
     const handleScroll = () => {
       const categoriesEl = document.getElementById('categories');
       const bestsellersEl = document.getElementById('bestsellers');
-
       if (!categoriesEl || !bestsellersEl) return;
-
       const catRect = categoriesEl.getBoundingClientRect();
       const bestRect = bestsellersEl.getBoundingClientRect();
-      const triggerY = 140; // below 76px sticky header + offset
-
-      if (catRect.top > triggerY) {
-        setActiveHomeSection('home');
-      } else if (catRect.top <= triggerY && bestRect.top > triggerY) {
-        setActiveHomeSection('categories');
-      } else if (bestRect.top <= triggerY) {
-        setActiveHomeSection('bestsellers');
-      }
+      const triggerY = 140; 
+      if (catRect.top > triggerY) setActiveHomeSection('home');
+      else if (catRect.top <= triggerY && bestRect.top > triggerY) setActiveHomeSection('categories');
+      else if (bestRect.top <= triggerY) setActiveHomeSection('bestsellers');
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [currentPage]);
 
   const handleLinkClick = (view, e) => {
     e.preventDefault();
-    setMobileMenuOpen(false);
 
     if (view === 'categories') {
-      setActiveHomeSection('categories');
-      if (currentPage !== 'home') {
-        onNavigate('home');
+      if (categoryClickCount === 0) {
+        // First tap: toggle mega menu
+        setMegaMenuOpen(!megaMenuOpen);
+        setCategoryClickCount(1);
+        
+        // Reset the click count after 400ms to simulate a double-tap window
         setTimeout(() => {
-          const el = document.getElementById('categories');
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 150);
+          setCategoryClickCount(0);
+        }, 400);
+        return;
       } else {
-        const el = document.getElementById('categories');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        // Second tap within 400ms: navigate to dedicated page
+        setMobileMenuOpen(false);
+        setMegaMenuOpen(false);
+        setCategoryClickCount(0);
+        onNavigate('all-categories');
+        return;
       }
-      return;
     }
+
+    // Reset others
+    setMobileMenuOpen(false);
+    setMegaMenuOpen(false);
+    setCategoryClickCount(0);
 
     if (view === 'bestsellers') {
       setActiveHomeSection('bestsellers');
@@ -242,17 +258,78 @@ export default function Navbar({ currentPage, onNavigate }) {
     onNavigate(view);
   };
 
+  const renderMegaMenu = (isMobile = false) => {
+    return (
+      <div 
+        className={`${
+          isMobile 
+            ? 'mt-2 pl-4 border-l-2 border-brand-yellow/30 space-y-4' 
+            : 'absolute top-full left-0 w-screen bg-white shadow-2xl border-t border-gray-100 z-50 p-6 animate-in fade-in slide-in-from-top-1 duration-200'
+        }`}
+      >
+        <div className={isMobile ? 'flex flex-col gap-4' : 'container mx-auto px-4 flex flex-wrap gap-8 justify-center'}>
+          {CATEGORIES.map(category => (
+            <div key={category.id} className={isMobile ? 'flex flex-col gap-2' : 'flex flex-col gap-3 min-w-[140px] max-w-[180px]'}>
+              <button 
+                onClick={() => {
+                  setMegaMenuOpen(false);
+                  setMobileMenuOpen(false);
+                  onNavigate('products', category.id);
+                }}
+                className="font-extrabold text-brand-teal hover:text-brand-pink text-sm uppercase tracking-wider text-left transition-colors flex items-center justify-between group cursor-pointer"
+              >
+                <span>{category.name}</span>
+                {!isMobile && <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity transform -translate-x-2 group-hover:translate-x-0" />}
+              </button>
+              
+              <div className="flex flex-col gap-2">
+                {MEGA_MENU_DATA[category.id]?.map((sub, idx) => (
+                  <button 
+                    key={idx}
+                    onClick={() => {
+                      setMegaMenuOpen(false);
+                      setMobileMenuOpen(false);
+                      onNavigate('products', category.id); // In real app, filter by subcategory
+                    }}
+                    className="text-xs font-semibold text-gray-500 hover:text-brand-teal hover:bg-brand-teal/5 py-1 px-2 -ml-2 rounded-lg text-left transition-colors cursor-pointer"
+                  >
+                    {sub}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ))}
+          
+          {/* Quick View All Link */}
+          {!isMobile && (
+            <div className="w-full flex justify-center mt-4 pt-4 border-t border-gray-100">
+              <button
+                onClick={() => {
+                  setMegaMenuOpen(false);
+                  onNavigate('all-categories');
+                }}
+                className="text-xs font-bold text-brand-teal hover:text-brand-pink transition-colors inline-flex items-center gap-1 uppercase tracking-wider cursor-pointer bg-brand-teal/5 px-4 py-2 rounded-xl"
+              >
+                <span>View All Categories</span>
+                <ArrowRight size={14} />
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200/80 shadow-xs transition-all">
-      <div className="container mx-auto px-4 flex items-center justify-between h-[76px] gap-6">
+      <div className="container mx-auto px-4 flex items-center justify-between h-[76px] gap-6 relative">
         {/* Brand Logo */}
         <button
           onClick={() => {
             setActiveHomeSection('home');
             onNavigate('home');
           }}
-          className="flex items-center text-left cursor-pointer group focus:outline-none"
-          aria-label="School Cart Home"
+          className="flex items-center text-left cursor-pointer group focus:outline-none shrink-0"
         >
           <img
             src="/logo.png"
@@ -261,40 +338,58 @@ export default function Navbar({ currentPage, onNavigate }) {
           />
         </button>
 
+        {/* Global Search Bar (Desktop) */}
+        <div className="hidden lg:flex flex-1 justify-center px-4">
+          <div className="w-full max-w-md">
+            <GlobalSearch
+              onNavigate={onNavigate}
+              onSearch={onSearchChange}
+              currentQuery={searchQuery}
+            />
+          </div>
+        </div>
+
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-7">
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-7 h-full shrink-0">
           {NAV_LINKS.map((link, idx) => {
             const isActive =
               currentPage === 'home'
                 ? link.view === activeHomeSection
                 : link.view === currentPage;
+            
+            const isCategories = link.view === 'categories';
 
             return (
-              <button
-                key={idx}
-                onClick={(e) => handleLinkClick(link.view, e)}
-                className={`text-sm font-semibold text-gray-600 hover:text-brand-teal transition-colors inline-flex items-center gap-1 py-1 relative cursor-pointer ${
-                  isActive ? 'text-brand-teal font-bold' : ''
-                }`}
+              <div 
+                key={idx} 
+                className="h-full flex items-center"
+                ref={isCategories ? megaMenuRef : null}
               >
-                {link.label}
-                {link.view === 'categories' && (
-                  <ChevronDown
-                    size={14}
-                    className={isActive ? 'text-brand-teal' : 'text-gray-400'}
-                  />
-                )}
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-yellow rounded-full" />
-                )}
-              </button>
+                <button
+                  onClick={(e) => handleLinkClick(link.view, e)}
+                  className={`text-sm font-semibold text-gray-600 hover:text-brand-teal transition-colors inline-flex items-center gap-1 py-1 relative cursor-pointer ${
+                    isActive || (isCategories && megaMenuOpen) ? 'text-brand-teal font-bold' : ''
+                  }`}
+                  title={isCategories ? 'Double tap to open all categories' : ''}
+                >
+                  {link.label}
+                  {isCategories && (
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${(isActive || megaMenuOpen) ? 'text-brand-teal' : 'text-gray-400'} ${megaMenuOpen ? 'rotate-180' : ''}`}
+                    />
+                  )}
+                  {(isActive || (isCategories && megaMenuOpen)) && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-yellow rounded-full" />
+                  )}
+                </button>
+              </div>
             );
           })}
         </nav>
 
         {/* Actions (Wishlist, User, Cart) */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Wishlist Button */}
           {isAuthenticated && (
             <button
               className={`relative p-2 rounded-full transition-all duration-200 active:scale-75 cursor-pointer ${
@@ -302,9 +397,7 @@ export default function Navbar({ currentPage, onNavigate }) {
                   ? 'text-brand-pink bg-pink-50 ring-2 ring-brand-pink/20 shadow-xs'
                   : 'text-brand-teal hover:bg-brand-teal/5'
               }`}
-              title={`My Liked Items (${wishlist.length})`}
               onClick={() => setIsWishlistOpen(true)}
-              aria-label="Open Wishlist Drawer"
             >
               <Heart
                 size={20}
@@ -319,7 +412,6 @@ export default function Navbar({ currentPage, onNavigate }) {
             </button>
           )}
 
-          {/* User Account / Profile Actions (Desktop Only) */}
           {isAuthenticated ? (
             <div
               className="hidden lg:flex items-center gap-1 relative"
@@ -329,26 +421,18 @@ export default function Navbar({ currentPage, onNavigate }) {
             >
               <button
                 className={`relative p-2 rounded-full transition-colors cursor-pointer ${
-                  currentPage === 'profile'
+                  currentPage === 'profile' || actionProfileOpen
                     ? 'text-white bg-brand-teal shadow-xs'
                     : 'text-brand-teal hover:bg-brand-teal/5'
                 }`}
-                title={`Account: ${userProfile?.name || 'My Profile'}`}
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (profileTimerRef.current) {
-                    clearTimeout(profileTimerRef.current);
-                    profileTimerRef.current = null;
-                  }
-                  setActionProfileOpen((prev) => !prev);
+                  setActionProfileOpen(!actionProfileOpen);
                 }}
-                aria-label="My Profile & Account"
-                aria-expanded={actionProfileOpen}
               >
                 <User size={20} />
                 <span className="absolute bottom-1 right-1 w-2 h-2 bg-emerald-500 rounded-full ring-2 ring-white" />
               </button>
-
               {actionProfileOpen && (
                 <DesktopProfileDropdown
                   isAuthenticated={isAuthenticated}
@@ -382,13 +466,10 @@ export default function Navbar({ currentPage, onNavigate }) {
             </div>
           )}
 
-          {/* Cart Icon with Live Count */}
           {isAuthenticated && (
             <button
               className="relative p-2 rounded-full text-brand-teal hover:bg-brand-teal/5 transition-colors cursor-pointer"
-              title="Shopping Cart"
               onClick={() => setIsCartOpen(true)}
-              aria-label="Cart"
             >
               <ShoppingCart size={20} />
               <span className="absolute top-1 right-1 bg-brand-yellow text-brand-teal-dark text-[10px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center border-2 border-white shadow-xs">
@@ -397,47 +478,64 @@ export default function Navbar({ currentPage, onNavigate }) {
             </button>
           )}
 
-          {/* Mobile Menu Toggle */}
           <button
             className="p-2 rounded-full text-brand-teal hover:bg-brand-teal/5 lg:hidden cursor-pointer"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
+      
+      {/* Desktop Mega Menu Dropdown */}
+      {megaMenuOpen && renderMegaMenu(false)}
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden border-t border-gray-100 bg-white px-4 py-4 space-y-3 shadow-lg">
+        <div className="lg:hidden border-t border-gray-100 bg-white px-4 py-4 space-y-3 shadow-lg max-h-[calc(100vh-76px)] overflow-y-auto">
+          {/* Global Search Bar (Mobile) */}
+          <div className="pb-3 border-b border-gray-100 mb-3">
+            <GlobalSearch
+              onNavigate={(page) => {
+                setMobileMenuOpen(false);
+                onNavigate(page);
+              }}
+              onSearch={onSearchChange}
+              currentQuery={searchQuery}
+            />
+          </div>
+
           <div className="flex flex-col space-y-2">
             {NAV_LINKS.map((link, idx) => {
               const isMobileActive =
                 currentPage === 'home'
                   ? link.view === activeHomeSection
                   : link.view === currentPage;
+              const isCategories = link.view === 'categories';
 
               return (
-                <button
-                  key={idx}
-                  onClick={(e) => handleLinkClick(link.view, e)}
-                  className={`text-left text-sm font-semibold py-1.5 cursor-pointer flex items-center justify-between ${
-                    isMobileActive
-                      ? 'text-brand-teal font-bold'
-                      : 'text-gray-700 hover:text-brand-teal'
-                  }`}
-                >
-                  <span className="relative pb-0.5">
-                    {link.label}
-                    {isMobileActive && (
-                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-yellow rounded-full" />
+                <div key={idx} className="flex flex-col">
+                  <button
+                    onClick={(e) => handleLinkClick(link.view, e)}
+                    className={`text-left text-sm font-semibold py-1.5 cursor-pointer flex items-center justify-between ${
+                      isMobileActive || (isCategories && megaMenuOpen)
+                        ? 'text-brand-teal font-bold'
+                        : 'text-gray-700 hover:text-brand-teal'
+                    }`}
+                  >
+                    <span className="relative pb-0.5">
+                      {link.label}
+                      {isCategories && categoryClickCount === 1 && <span className="ml-2 text-[10px] text-gray-400 font-normal italic">Tap again to view all</span>}
+                      {(isMobileActive || (isCategories && megaMenuOpen)) && (
+                        <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-yellow rounded-full" />
+                      )}
+                    </span>
+                    {isCategories && (
+                      <ChevronDown size={14} className={`transition-transform duration-200 ${(isMobileActive || megaMenuOpen) ? 'text-brand-teal' : 'text-gray-400'} ${megaMenuOpen ? 'rotate-180' : '-rotate-90'}`} />
                     )}
-                  </span>
-                  {link.view === 'categories' && (
-                    <ChevronDown size={14} className={`-rotate-90 ${isMobileActive ? 'text-brand-teal' : 'text-gray-400'}`} />
-                  )}
-                </button>
+                  </button>
+                  {isCategories && megaMenuOpen && renderMegaMenu(true)}
+                </div>
               );
             })}
 
@@ -445,7 +543,6 @@ export default function Navbar({ currentPage, onNavigate }) {
             <div className="pt-3 mt-2 border-t border-gray-100 space-y-2">
               {isAuthenticated ? (
                 <div className="space-y-2">
-                  {/* Authenticated User Banner */}
                   <div className="flex items-center gap-2.5 px-3 py-2 bg-brand-teal/5 border border-brand-teal/10 rounded-xl">
                     <div className="w-8 h-8 rounded-full bg-brand-teal text-white flex items-center justify-center font-extrabold text-xs shrink-0">
                       {userProfile?.name ? userProfile.name.charAt(0).toUpperCase() : 'U'}
@@ -459,8 +556,6 @@ export default function Navbar({ currentPage, onNavigate }) {
                       </p>
                     </div>
                   </div>
-
-                  {/* Profile Button */}
                   <button
                     onClick={() => {
                       onNavigate('profile', null, 'profile');
@@ -478,14 +573,10 @@ export default function Navbar({ currentPage, onNavigate }) {
                     </span>
                     <ChevronDown size={14} className={`-rotate-90 ${currentPage === 'profile' ? 'text-white' : 'text-gray-400'}`} />
                   </button>
-
-                  {/* Logout Button */}
                   <button
                     onClick={() => {
                       logout();
-                      if (currentPage === 'profile') {
-                        onNavigate('home');
-                      }
+                      if (currentPage === 'profile') onNavigate('home');
                       setMobileMenuOpen(false);
                     }}
                     className="w-full flex items-center gap-2.5 text-left text-sm font-bold text-red-600 hover:text-red-700 hover:bg-red-50 py-2 px-3 rounded-xl transition-colors cursor-pointer"
@@ -496,7 +587,6 @@ export default function Navbar({ currentPage, onNavigate }) {
                 </div>
               ) : (
                 <div className="space-y-2">
-                  {/* Sign In & Register Buttons */}
                   <div className="grid grid-cols-2 gap-2 pt-1">
                     <button
                       onClick={() => {
