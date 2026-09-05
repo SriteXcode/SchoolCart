@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import ProductCarouselRow from './ProductCarouselRow';
+import GrabKitSection from './GrabKitSection';
 import { ALL_PRODUCTS } from '../../data/mockData';
 
 // Helper to deterministically shuffle/slice based on a seed or just statically to avoid re-renders
@@ -78,6 +79,8 @@ export default function HomeProductSections({ activeCategory, searchQuery, onNav
         autoScroll={true}
         autoScrollInterval={3500}
       />
+
+      <GrabKitSection onNavigate={onNavigate} />
     </div>
   );
 }

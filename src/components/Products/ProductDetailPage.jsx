@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { ALL_PRODUCTS } from '../../data/mockData';
+import GrabKitSection from './GrabKitSection';
 
 export default function ProductDetailPage({ onNavigate }) {
   const {
@@ -593,6 +594,11 @@ export default function ProductDetailPage({ onNavigate }) {
                 'Top-rated student favorites across all categories.',
                 helpfulProducts
               )}
+            </div>
+
+            {/* GRAB KIT SECTION */}
+            <div className="mt-8 rounded-2xl overflow-hidden border border-gray-100">
+              <GrabKitSection onNavigate={onNavigate} />
             </div>
 
             {/* STUDENT USER REVIEWS & ADD REVIEW FORM */}

@@ -168,6 +168,8 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
     }, 400); // Increased from 250ms to prevent accidental closing
   };
 
+  const headerRef = useRef(null);
+
   useEffect(() => {
     function handleClickOutside(e) {
       if (actionProfileRef.current && !actionProfileRef.current.contains(e.target)) {
@@ -176,6 +178,9 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
       if (megaMenuRef.current && !megaMenuRef.current.contains(e.target)) {
         setMegaMenuOpen(false);
         setCategoryClickCount(0);
+      }
+      if (headerRef.current && !headerRef.current.contains(e.target)) {
+        setMobileMenuOpen(false);
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
@@ -331,7 +336,7 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200/80 shadow-xs transition-all">
+    <header ref={headerRef} className="sticky top-0 z-50 bg-white border-b border-gray-200/80 shadow-xs transition-all">
       <div className="container mx-auto px-4 flex items-center justify-between h-[76px] gap-6 relative">
         {/* Brand Logo */}
         <button
