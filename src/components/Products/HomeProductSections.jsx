@@ -35,20 +35,6 @@ export default function HomeProductSections({ activeCategory, searchQuery, onNav
     );
   }
 
-  // If a category is selected, maybe show products for that category
-  if (activeCategory) {
-    const categoryProducts = getMockProducts(0, 10, activeCategory);
-    return (
-      <div id="bestsellers" className="bg-gray-50/70 pt-8">
-        <ProductCarouselRow 
-          title={`${activeCategory} Essentials`}
-          products={categoryProducts}
-          onViewAll={() => onNavigate('products', activeCategory)}
-        />
-      </div>
-    );
-  }
-
   // Default Home Page - Multiple Rows
   const recentlyViewed = getMockProducts(0, 8);
   const featured = getMockProducts(3, 8);
