@@ -95,9 +95,7 @@ function MainStore() {
             <CategorySection
               activeCategory={activeCategory}
               onSelectCategory={(catId) => {
-                setActiveCategory(catId);
-                const el = document.getElementById('bestsellers');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                navigateTo('products', catId);
               }}
               onNavigate={navigateTo}
             />

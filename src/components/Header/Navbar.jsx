@@ -165,7 +165,7 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
     megaMenuTimerRef.current = setTimeout(() => {
       setMegaMenuOpen(false);
       setCategoryClickCount(0); // reset on leave
-    }, 250);
+    }, 400); // Increased from 250ms to prevent accidental closing
   };
 
   useEffect(() => {
@@ -276,8 +276,6 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
             ? 'mt-2 pl-4 border-l-2 border-brand-yellow/30 space-y-4' 
             : 'absolute top-full left-0 w-screen bg-white shadow-2xl border-t border-gray-100 z-50 p-6 animate-in fade-in slide-in-from-top-1 duration-200'
         }`}
-        onMouseEnter={!isMobile ? handleMegaMenuEnter : undefined}
-        onMouseLeave={!isMobile ? handleMegaMenuLeave : undefined}
       >
         <div className={isMobile ? 'flex flex-col gap-4' : 'container mx-auto px-4 flex flex-wrap gap-8 justify-center'}>
           {CATEGORIES.map(category => (
@@ -301,8 +299,7 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
                     onClick={() => {
                       setMegaMenuOpen(false);
                       setMobileMenuOpen(false);
-                      onSearchChange(sub);
-                      onNavigate('products', category.id);
+                      onNavigate('products', category.id); // In real app, filter by subcategory
                     }}
                     className="text-xs font-semibold text-gray-500 hover:text-brand-teal hover:bg-brand-teal/5 py-1 px-2 -ml-2 rounded-lg text-left transition-colors cursor-pointer"
                   >
