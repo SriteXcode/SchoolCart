@@ -205,6 +205,16 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
     e.preventDefault();
 
     if (view === 'categories') {
+      // If it's a large device (desktop), direct click goes to categories page
+      if (window.innerWidth >= 1024) {
+        setMobileMenuOpen(false);
+        setMegaMenuOpen(false);
+        setCategoryClickCount(0);
+        onNavigate('all-categories');
+        return;
+      }
+
+      // Mobile logic (double tap)
       if (categoryClickCount === 0) {
         // First tap: toggle mega menu
         setMegaMenuOpen(!megaMenuOpen);
@@ -266,6 +276,8 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
             ? 'mt-2 pl-4 border-l-2 border-brand-yellow/30 space-y-4' 
             : 'absolute top-full left-0 w-screen bg-white shadow-2xl border-t border-gray-100 z-50 p-6 animate-in fade-in slide-in-from-top-1 duration-200'
         }`}
+        onMouseEnter={!isMobile ? handleMegaMenuEnter : undefined}
+        onMouseLeave={!isMobile ? handleMegaMenuLeave : undefined}
       >
         <div className={isMobile ? 'flex flex-col gap-4' : 'container mx-auto px-4 flex flex-wrap gap-8 justify-center'}>
           {CATEGORIES.map(category => (
@@ -364,6 +376,8 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
                 key={idx} 
                 className="h-full flex items-center"
                 ref={isCategories ? megaMenuRef : null}
+                onMouseEnter={isCategories ? handleMegaMenuEnter : undefined}
+                onMouseLeave={isCategories ? handleMegaMenuLeave : undefined}
               >
                 <button
                   onClick={(e) => handleLinkClick(link.view, e)}
