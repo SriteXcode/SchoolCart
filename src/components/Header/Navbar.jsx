@@ -301,7 +301,8 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
                     onClick={() => {
                       setMegaMenuOpen(false);
                       setMobileMenuOpen(false);
-                      onNavigate('products', category.id); // In real app, filter by subcategory
+                      onSearchChange(sub);
+                      onNavigate('products', category.id);
                     }}
                     className="text-xs font-semibold text-gray-500 hover:text-brand-teal hover:bg-brand-teal/5 py-1 px-2 -ml-2 rounded-lg text-left transition-colors cursor-pointer"
                   >
