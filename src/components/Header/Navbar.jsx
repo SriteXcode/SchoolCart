@@ -274,7 +274,7 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
         className={`${
           isMobile 
             ? 'mt-2 pl-4 border-l-2 border-brand-yellow/30 space-y-4' 
-            : 'absolute top-full left-0 w-screen bg-white shadow-2xl border-t border-gray-100 z-50 p-6 animate-in fade-in slide-in-from-top-1 duration-200'
+            : 'fixed top-[76px] left-0 w-full bg-white shadow-2xl border-t border-gray-100 z-50 p-6 animate-in fade-in slide-in-from-top-1 duration-200'
         }`}
       >
         <div className={isMobile ? 'flex flex-col gap-4' : 'container mx-auto px-4 flex flex-wrap gap-8 justify-center'}>
@@ -312,7 +312,7 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
           
           {/* Quick View All Link */}
           {!isMobile && (
-            <div className="w-full flex justify-center mt-4 pt-4 border-t border-gray-100">
+            <div className="w-full flex justify-center mt-4 pt-4 border-t border-gray-100 lg:hidden">
               <button
                 onClick={() => {
                   setMegaMenuOpen(false);
@@ -395,6 +395,7 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
                     <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-yellow rounded-full" />
                   )}
                 </button>
+                {isCategories && megaMenuOpen && renderMegaMenu(false)}
               </div>
             );
           })}
@@ -499,9 +500,6 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
         </div>
       </div>
       
-      {/* Desktop Mega Menu Dropdown */}
-      {megaMenuOpen && renderMegaMenu(false)}
-
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden border-t border-gray-100 bg-white px-4 py-4 space-y-3 shadow-lg max-h-[calc(100vh-76px)] overflow-y-auto">
