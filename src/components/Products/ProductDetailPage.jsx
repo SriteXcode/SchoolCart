@@ -112,9 +112,17 @@ export default function ProductDetailPage({ onNavigate }) {
   ).toFixed(1);
 
   // Recommendation products (exclude current)
-  const recommendations = ALL_PRODUCTS.filter(
-    (p) => p.id !== selectedProduct.id && (p.category === selectedProduct.category || p.rating >= 4.8)
-  ).slice(0, 3);
+  const moreInKit = ALL_PRODUCTS.filter(
+    (p) => p.id !== selectedProduct.id && p.category !== selectedProduct.category
+  ).slice(0, 6);
+
+  const similarProducts = ALL_PRODUCTS.filter(
+    (p) => p.id !== selectedProduct.id && p.category === selectedProduct.category
+  ).slice(0, 6);
+
+  const helpfulProducts = ALL_PRODUCTS.filter(
+    (p) => p.id !== selectedProduct.id && p.rating >= 4.8
+  ).slice(0, 6);
 
   const handleReviewSubmit = (e) => {
     e.preventDefault();
@@ -150,6 +158,83 @@ export default function ProductDetailPage({ onNavigate }) {
   const goBack = () => {
     closeProductDetails();
     if (onNavigate) onNavigate('products');
+  };
+
+  const renderRecommendationRow = (title, subtitle, items) => {
+    if (!items || items.length === 0) return null;
+    return (
+      <div className="mb-8">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="font-display text-base font-extrabold text-brand-teal flex items-center gap-2">
+              <span>{title}</span>
+              <Sparkles size={14} className="text-brand-ochre" />
+            </h3>
+            <p className="text-[11px] text-gray-500 mt-0.5">
+              {subtitle}
+            </p>
+          </div>
+        </div>
+
+        {/* Scrollable Container */}
+        <div className="flex overflow-x-auto gap-4 pb-4 hide-scrollbar snap-x snap-mandatory">
+          {items.map((rec) => (
+            <div
+              key={rec.id}
+              onClick={() => openProductDetails(rec)}
+              className="min-w-[160px] sm:min-w-[180px] snap-start p-3 rounded-2xl border border-gray-200 bg-white hover:border-brand-teal/30 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group"
+            >
+              <div>
+                <div className="relative w-full pt-[75%] rounded-xl overflow-hidden bg-gray-50 mb-3">
+                  <img
+                    src={rec.image}
+                    alt={rec.name}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = '/images/gel-pen-set.jpg';
+                    }}
+                  />
+                </div>
+                <h4 className="font-display font-bold text-xs text-gray-900 group-hover:text-brand-teal line-clamp-1">
+                  {rec.name}
+                </h4>
+                <p className="text-[10px] text-gray-500 line-clamp-1 mt-0.5">
+                  {rec.subtitle}
+                </p>
+              </div>
+
+              <div className="mt-3 pt-2.5 border-t border-gray-100 flex items-center justify-between">
+                <span className="font-display font-extrabold text-xs text-brand-teal">
+                  ₹{rec.price}
+                </span>
+                {(() => {
+                  const recItem = cartItems?.find((item) => Number(item.id) === Number(rec.id));
+                  const recCount = recItem ? recItem.quantity : 0;
+                  return (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addToCart(rec, 1);
+                      }}
+                      className={`px-2 py-1 rounded-lg font-bold text-[10px] flex items-center gap-1 transition-all cursor-pointer ${
+                        recCount > 0
+                          ? 'bg-brand-yellow text-brand-teal-dark border border-brand-yellow-hover font-extrabold ring-1 ring-brand-yellow/30'
+                          : 'bg-brand-yellow/30 hover:bg-brand-yellow text-brand-teal'
+                      }`}
+                    >
+                      <ShoppingCart size={10} />
+                      <span>{recCount > 0 ? `Add (${recCount})` : 'Add'}</span>
+                    </button>
+                  );
+                })()}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   };
 
   // Specifications metadata generator
@@ -489,82 +574,29 @@ export default function ProductDetailPage({ onNavigate }) {
               )}
             </div>
 
-            {/* MORE PRODUCT RECOMMENDATIONS */}
-            {recommendations.length > 0 && (
-              <div className="mt-8 pt-6 border-t border-gray-100">
-                <div className="flex items-center justify-between mb-6">
-                  <div>
-                    <h3 className="font-display text-lg font-extrabold text-brand-teal flex items-center gap-2">
-                      <span>You May Also Like</span>
-                      <Sparkles size={16} className="text-brand-ochre" />
-                    </h3>
-                    <p className="text-xs text-gray-500 mt-0.5">
-                      Complementary student study kits & companion stationery.
-                    </p>
-                  </div>
-                </div>
+            {/* RECOMMENDATIONS SECTIONS */}
+            <div className="mt-10 pt-8 border-t border-gray-100">
+              {renderRecommendationRow(
+                'Complete Your Kit',
+                'Complementary student study kits & companion stationery.',
+                moreInKit
+              )}
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {recommendations.map((rec) => (
-                    <div
-                      key={rec.id}
-                      onClick={() => openProductDetails(rec)}
-                      className="p-3.5 rounded-2xl border border-gray-200 bg-white hover:border-brand-teal/30 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group"
-                    >
-                      <div>
-                        <div className="relative w-full pt-[75%] rounded-xl overflow-hidden bg-gray-50 mb-3">
-                          <img
-                            src={rec.image}
-                            alt={rec.name}
-                            className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                            onError={(e) => {
-                              e.currentTarget.onerror = null;
-                              e.currentTarget.src = '/images/gel-pen-set.jpg';
-                            }}
-                          />
-                        </div>
-                        <h4 className="font-display font-bold text-xs text-gray-900 group-hover:text-brand-teal line-clamp-1">
-                          {rec.name}
-                        </h4>
-                        <p className="text-[10px] text-gray-500 line-clamp-1 mt-0.5">
-                          {rec.subtitle}
-                        </p>
-                      </div>
+              {renderRecommendationRow(
+                'Similar Products',
+                'Other options in this category you might prefer.',
+                similarProducts
+              )}
 
-                      <div className="mt-3 pt-2.5 border-t border-gray-100 flex items-center justify-between">
-                        <span className="font-display font-extrabold text-xs text-brand-teal">
-                          ₹{rec.price}
-                        </span>
-                        {(() => {
-                          const recItem = cartItems?.find((item) => Number(item.id) === Number(rec.id));
-                          const recCount = recItem ? recItem.quantity : 0;
-                          return (
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                addToCart(rec, 1);
-                              }}
-                              className={`px-2.5 py-1 rounded-lg font-bold text-[11px] flex items-center gap-1 transition-all cursor-pointer ${
-                                recCount > 0
-                                  ? 'bg-brand-yellow text-brand-teal-dark border border-brand-yellow-hover font-extrabold ring-1 ring-brand-yellow/30'
-                                  : 'bg-brand-yellow/30 hover:bg-brand-yellow text-brand-teal'
-                              }`}
-                            >
-                              <ShoppingCart size={11} />
-                              <span>{recCount > 0 ? `Add (${recCount})` : 'Add'}</span>
-                            </button>
-                          );
-                        })()}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+              {renderRecommendationRow(
+                'You Might Find Helpful',
+                'Top-rated student favorites across all categories.',
+                helpfulProducts
+              )}
+            </div>
 
             {/* STUDENT USER REVIEWS & ADD REVIEW FORM */}
-            <div className="mt-12 pt-8 border-t border-gray-100">
+            <div id="reviews-section" className="mt-12 pt-8 border-t border-gray-100">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                 <div>
                   <h3 className="font-display text-xl font-extrabold text-brand-teal flex items-center gap-2">
@@ -578,7 +610,14 @@ export default function ProductDetailPage({ onNavigate }) {
 
                 <button
                   type="button"
-                  onClick={() => setShowReviewForm(!showReviewForm)}
+                  onClick={() => {
+                    setShowReviewForm(!showReviewForm);
+                    if (!showReviewForm) {
+                      setTimeout(() => {
+                        document.getElementById('reviews-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      }, 50);
+                    }
+                  }}
                   className="inline-flex items-center gap-2 bg-brand-teal hover:bg-brand-teal-light text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-xs transition-all cursor-pointer self-start sm:self-auto"
                 >
                   <span>{showReviewForm ? 'Cancel Review' : 'Write a Review'}</span>
