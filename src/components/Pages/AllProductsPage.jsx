@@ -46,6 +46,11 @@ export default function AllProductsPage({
     setInternalSearchQuery(externalSearchQuery);
   }, [externalSearchQuery]);
 
+  // Sync category changes if navigated from navbar while already on this page
+  useEffect(() => {
+    setSelectedCategory(initialCategory);
+  }, [initialCategory]);
+
   const activeSearchQuery = externalOnSearchChange ? externalSearchQuery : internalSearchQuery;
 
   // Filter and sort products
@@ -268,7 +273,7 @@ export default function AllProductsPage({
                   <X size={14} />
                 </button>
               )}
-            </div>
+            </div> 
 
             {/* Controls Row */}
             <div className="flex items-center gap-2.5 flex-wrap">
