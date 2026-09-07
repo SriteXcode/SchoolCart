@@ -1,4 +1,4 @@
-// Mock data for School Cart frontend matching the design layout with INR (₹ / Rs) pricing
+// Mock data for Book Vardi frontend matching the design layout with INR (₹ / Rs) pricing
 
 export const ANNOUNCEMENTS = [
   { icon: 'Truck', text: 'Free Shipping on Orders Over ₹499' },
@@ -49,71 +49,107 @@ export const VALUE_PROPS = [
 
 export const CATEGORIES = [
   {
-    id: 'notebooks',
-    name: 'NOTEBOOKS',
-    itemCount: '120+ Items',
-    accentColor: 'var(--color-brand-pink)',
-    bgColor: 'var(--color-brand-pink-subtle)',
-    icon: 'BookOpen',
-    imageUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 'pens',
-    name: 'PENS & PENCILS',
-    itemCount: '85+ Items',
+    id: 'uniforms',
+    name: 'SCHOOL UNIFORMS',
+    itemCount: '200+ Items',
     accentColor: 'var(--color-brand-blue)',
     bgColor: 'var(--color-brand-blue-subtle)',
-    icon: 'PenTool',
-    imageUrl: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=300&auto=format&fit=crop&q=80'
+    icon: 'Shirt',
+    imageUrl: 'https://images.unsplash.com/photo-1593032465175-481ac7f401a0?w=300&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 'ncert',
+    name: 'NCERT BOOKS',
+    itemCount: '150+ Books',
+    accentColor: 'var(--color-brand-teal)',
+    bgColor: 'var(--color-brand-teal-subtle)',
+    icon: 'BookOpen',
+    imageUrl: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=300&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 'practice_books',
+    name: 'PRACTICE BOOKS',
+    itemCount: '120+ Books',
+    accentColor: 'var(--color-brand-ochre)',
+    bgColor: 'var(--color-brand-ochre-subtle)',
+    icon: 'BookMarked',
+    imageUrl: 'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=300&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 'drawing_books',
+    name: 'DRAWING FOR KIDS',
+    itemCount: '80+ Items',
+    accentColor: 'var(--color-brand-pink)',
+    bgColor: 'var(--color-brand-pink-subtle)',
+    icon: 'Palette',
+    imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 'school_specific',
+    name: 'SCHOOL SPECIFIC',
+    itemCount: '50+ Schools',
+    accentColor: 'var(--color-brand-yellow)',
+    bgColor: 'var(--color-brand-yellow-subtle)',
+    icon: 'Building',
+    imageUrl: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=300&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 'sports',
+    name: 'SPORTS',
+    itemCount: '100+ Items',
+    accentColor: 'var(--color-brand-blue)',
+    bgColor: 'var(--color-brand-blue-subtle)',
+    icon: 'Activity',
+    imageUrl: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=300&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 'shoes',
+    name: 'SHOES',
+    itemCount: '60+ Pairs',
+    accentColor: 'var(--color-brand-teal)',
+    bgColor: 'var(--color-brand-teal-subtle)',
+    icon: 'Circle',
+    imageUrl: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=300&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 'winter',
+    name: 'WINTER WEAR',
+    itemCount: '80+ Items',
+    accentColor: 'var(--color-brand-pink)',
+    bgColor: 'var(--color-brand-pink-subtle)',
+    icon: 'CloudSnow',
+    imageUrl: 'https://plus.unsplash.com/premium_photo-1673356302067-aac3b545a362?w=300&auto=format&fit=crop&q=80'
+  },
+  {
+    id: 'rain',
+    name: 'RAIN GEAR',
+    itemCount: '30+ Items',
+    accentColor: 'var(--color-brand-ochre)',
+    bgColor: 'var(--color-brand-ochre-subtle)',
+    icon: 'CloudRain',
+    imageUrl: 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=300&auto=format&fit=crop&q=80'
   },
   {
     id: 'supplies',
-    name: 'OFFICE SUPPLIES',
+    name: 'STATIONERY',
     itemCount: '95+ Items',
-    accentColor: 'var(--color-brand-yellow)',
-    bgColor: 'var(--color-brand-yellow-subtle)',
-    icon: 'Paperclip',
+    accentColor: 'var(--color-brand-teal)',
+    bgColor: 'var(--color-brand-teal-subtle)',
+    icon: 'PenTool',
     imageUrl: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=300&auto=format&fit=crop&q=80'
   },
   {
     id: 'bags',
     name: 'BAGS & CASES',
     itemCount: '45+ Items',
-    accentColor: 'var(--color-brand-teal)',
-    bgColor: 'var(--color-brand-teal-subtle)',
+    accentColor: 'var(--color-brand-blue)',
+    bgColor: 'var(--color-brand-blue-subtle)',
     icon: 'Briefcase',
     imageUrl: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=300&auto=format&fit=crop&q=80'
   },
   {
-    id: 'art',
-    name: 'ART & CRAFT',
-    itemCount: '110+ Items',
-    accentColor: 'var(--color-brand-ochre)',
-    bgColor: 'var(--color-brand-ochre-subtle)',
-    icon: 'Palette',
-    imageUrl: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 'planners',
-    name: 'PLANNERS',
-    itemCount: '60+ Items',
-    accentColor: 'var(--color-brand-teal)',
-    bgColor: 'var(--color-brand-teal-subtle)',
-    icon: 'Calendar',
-    imageUrl: 'https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=300&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 'gifts',
-    name: 'GIFT SETS',
-    itemCount: '35+ Items',
-    accentColor: 'var(--color-brand-pink)',
-    bgColor: 'var(--color-brand-pink-subtle)',
-    icon: 'Gift',
-    imageUrl: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=300&auto=format&fit=crop&q=80'
-  },
-  {
     id: 'kits',
-    name: 'KITS',
+    name: 'KITS & BUNDLES',
     itemCount: '12+ Bundles',
     accentColor: 'var(--color-brand-ochre)',
     bgColor: 'var(--color-brand-ochre-subtle)',
@@ -125,94 +161,94 @@ export const CATEGORIES = [
 export const BEST_SELLERS = [
   {
     id: 1,
-    name: 'Minimal Spiral Notebook',
-    subtitle: 'Ruled Pages • 160 Pages 100 GSM',
-    category: 'notebooks',
-    price: 199,
-    originalPrice: 299,
-    discountBadge: '33% OFF',
+    name: 'DPS Summer Uniform Set (Boys)',
+    subtitle: 'White Shirt & Grey Shorts • Cotton Blend',
+    category: 'uniforms',
+    price: 899,
+    originalPrice: 1199,
+    discountBadge: '25% OFF',
     rating: 4.9,
     reviewsCount: 1245,
     inStock: true,
-    image: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=500&auto=format&fit=crop&q=80'
+    image: 'https://images.unsplash.com/photo-1593032465175-481ac7f401a0?w=500&auto=format&fit=crop&q=80'
   },
   {
     id: 2,
-    name: 'Gel Pen Set (10pcs)',
-    subtitle: 'Smooth Writing • 0.5mm Quick-Dry Ink',
-    category: 'pens',
-    price: 249,
-    originalPrice: 349,
-    discountBadge: '28% OFF',
+    name: 'KV Winter Uniform Sweater (Unisex)',
+    subtitle: 'Navy Blue V-Neck • 100% Warm Wool',
+    category: 'uniforms',
+    price: 949,
+    originalPrice: 1299,
+    discountBadge: '26% OFF',
     rating: 4.8,
     reviewsCount: 2153,
     inStock: true,
-    image: '/images/gel-pen-set.jpg'
+    image: 'https://plus.unsplash.com/premium_photo-1673356302067-aac3b545a362?w=500&auto=format&fit=crop&q=80'
   },
   {
     id: 3,
-    name: 'Pastel Highlighters Set',
-    subtitle: 'Chisel Tip • 6 Aesthetic Soft Colors',
-    category: 'pens',
-    price: 189,
-    originalPrice: 299,
-    discountBadge: 'HOT',
+    name: 'NCERT Mathematics Class 10',
+    subtitle: 'Latest Edition • CBSE Board',
+    category: 'ncert',
+    price: 160,
+    originalPrice: 160,
+    discountBadge: 'BESTSELLER',
     rating: 4.9,
     reviewsCount: 1782,
     inStock: true,
-    image: '/images/pastel-highlighters.jpg'
+    image: 'https://images.unsplash.com/photo-1592496001020-d31bd830651f?w=500&auto=format&fit=crop&q=80'
   },
   {
     id: 4,
-    name: 'Multi-Function Desk Organizer',
-    subtitle: 'Tiered Storage • Durable Eco Wooden & Matte',
-    category: 'supplies',
-    price: 499,
-    originalPrice: 699,
+    name: 'NCERT Science Class 9',
+    subtitle: 'Latest Edition • CBSE Board',
+    category: 'ncert',
+    price: 150,
+    originalPrice: 150,
     discountBadge: 'POPULAR',
     rating: 4.9,
     reviewsCount: 1012,
     inStock: true,
-    image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=500&auto=format&fit=crop&q=80'
+    image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=500&auto=format&fit=crop&q=80'
   },
   {
     id: 5,
-    name: 'Aesthetic Washi Tape Set',
-    subtitle: 'Colorful Decorative Collection • 8 Rolls',
-    category: 'art',
-    price: 149,
-    originalPrice: 249,
+    name: 'Olympiad Reasoning Practice Book',
+    subtitle: 'Class 5-8 • Logical & Quantitative',
+    category: 'practice_books',
+    price: 249,
+    originalPrice: 349,
     discountBadge: 'SALE',
     rating: 4.7,
     reviewsCount: 943,
     inStock: true,
-    image: '/images/washi-tape-set.jpg'
+    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500&auto=format&fit=crop&q=80'
   },
   {
     id: 6,
-    name: 'Classic Academic Planner 2026',
-    subtitle: 'Weekly & Monthly • Faux Leather Bound',
-    category: 'planners',
-    price: 549,
-    originalPrice: 799,
-    discountBadge: 'BESTSELLER',
+    name: 'Kids Magic Coloring & Drawing Book',
+    subtitle: 'Water Reveal • Reusable Pages',
+    category: 'drawing_books',
+    price: 299,
+    originalPrice: 499,
+    discountBadge: '40% OFF',
     rating: 5.0,
     reviewsCount: 1317,
     inStock: true,
-    image: 'https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=500&auto=format&fit=crop&q=80'
+    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&auto=format&fit=crop&q=80'
   },
   {
     id: 7,
-    name: 'Pastel Travel Pencil Case',
-    subtitle: 'Large Capacity • Water-Resistant Canvas',
-    category: 'bags',
-    price: 299,
-    originalPrice: 449,
-    discountBadge: '33% OFF',
+    name: 'Girls Pleated Skirt Uniform',
+    subtitle: 'Any School Standard • Poly Viscose',
+    category: 'uniforms',
+    price: 649,
+    originalPrice: 899,
+    discountBadge: '27% OFF',
     rating: 4.9,
     reviewsCount: 885,
     inStock: true,
-    image: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=500&auto=format&fit=crop&q=80'
+    image: 'https://images.unsplash.com/photo-1588622153496-c67bfae6f4df?w=500&auto=format&fit=crop&q=80'
   },
   {
     id: 8,
@@ -233,28 +269,28 @@ export const BEST_SELLERS = [
 export const KIT_BUNDLES = [
   {
     id: 1001,
-    name: 'Back-to-School Starter Kit',
+    name: 'Back-to-School Summer Kit',
     school: 'Any School',
     className: 'Class 5',
-    subtitle: 'Notebook + pen set + planner + organizer',
+    subtitle: 'Summer Uniform + Shoes + Backpack + NCERT Books',
     category: 'kits',
-    price: 1249,
-    originalPrice: 1699,
+    price: 3199,
+    originalPrice: 4247,
     discountBadge: 'BUNDLE DEAL',
     rating: 4.9,
     reviewsCount: 640,
     inStock: true,
-    image: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=900&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1593032465175-481ac7f401a0?w=900&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=900&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=900&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=900&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1593032465175-481ac7f401a0?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=900&auto=format&fit=crop&q=80'
     ],
     kitItems: [
-      { id: 1, name: 'Minimal Spiral Notebook', price: 199 },
-      { id: 2, name: 'Gel Pen Set (10pcs)', price: 249 },
-      { id: 6, name: 'Classic Academic Planner 2026', price: 549 },
-      { id: 4, name: 'Multi-Function Desk Organizer', price: 499 }
+      { id: 1, name: 'Boys Summer Uniform Set', price: 899, image: 'https://images.unsplash.com/photo-1593032465175-481ac7f401a0?w=500&auto=format&fit=crop&q=80' },
+      { id: 4, name: 'Black Leather School Shoes', price: 799, image: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&auto=format&fit=crop&q=80' },
+      { id: 11, name: 'Class 5 NCERT Textbook Bundle', price: 850, image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=500&auto=format&fit=crop&q=80' },
+      { id: 20, name: 'Ergonomic Student Backpack', price: 1199, image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&auto=format&fit=crop&q=80' }
     ]
   },
   {
@@ -262,25 +298,23 @@ export const KIT_BUNDLES = [
     name: 'Board Exam Revision Kit',
     school: 'Any School',
     className: 'Class 10',
-    subtitle: 'Math notebook + highlighters + sticky notes + planner',
+    subtitle: '10-Year Question Bank + Geometry Box + Gel Pens',
     category: 'kits',
-    price: 1099,
-    originalPrice: 1499,
+    price: 799,
+    originalPrice: 898,
     discountBadge: 'TOP PICK',
     rating: 5.0,
     reviewsCount: 710,
     inStock: true,
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=900&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=900&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=900&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=900&auto=format&fit=crop&q=80'
     ],
     kitItems: [
-      { id: 10, name: 'Graph Grid Math Notebook (3 Pack)', price: 279 },
-      { id: 3, name: 'Pastel Highlighters Set', price: 189 },
-      { id: 8, name: 'Premium Sticky Notes Palette', price: 129 },
-      { id: 19, name: 'Student Habit & Goal Tracker Planner', price: 399 }
+      { id: 15, name: 'Class 10 CBSE 10-Year Question Bank', price: 499, image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=500&auto=format&fit=crop&q=80' },
+      { id: 18, name: 'Precision Geometry Compass Box', price: 249, image: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=500&auto=format&fit=crop&q=80' },
+      { id: 17, name: 'Premium Gel Pens (Pack of 10)', price: 150, image: 'https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=500&auto=format&fit=crop&q=80' }
     ]
   },
   {
@@ -288,10 +322,10 @@ export const KIT_BUNDLES = [
     name: 'Creative Artist Starter Kit',
     school: 'Ryan International',
     className: 'Class 8',
-    subtitle: 'Brush pens + sketch pad + markers + tote',
+    subtitle: 'Sketch Book + Magic Water Book + Water Bottle',
     category: 'kits',
-    price: 1499,
-    originalPrice: 2199,
+    price: 949,
+    originalPrice: 1097,
     discountBadge: 'CREATIVE BUNDLE',
     rating: 4.9,
     reviewsCount: 540,
@@ -299,471 +333,338 @@ export const KIT_BUNDLES = [
     image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=900&auto=format&fit=crop&q=80',
     images: [
       'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=900&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?w=900&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=900&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1544816155-12df9643f363?w=900&auto=format&fit=crop&q=80'
     ],
     kitItems: [
-      { id: 17, name: 'Artist Watercolor Paint Pan Set (36 Colors)', price: 599 },
-      { id: 11, name: 'Calligraphy Brush Pen Set (12 Shades)', price: 449 },
-      { id: 18, name: 'Heavyweight Mixed Media Pad (A4)', price: 329 },
-      { id: 27, name: 'Heavy Canvas Tote Bag with Pen Slots', price: 399 }
+      { id: 13, name: 'Kids Magic Water Coloring Book', price: 299, image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&auto=format&fit=crop&q=80' },
+      { id: 14, name: 'A4 Sketch Book', price: 199, image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=500&auto=format&fit=crop&q=80' },
+      { id: 19, name: 'Stainless Steel Water Bottle', price: 599, image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&auto=format&fit=crop&q=80' }
     ]
   },
   {
     id: 1004,
-    name: 'DPS Primary Learning Kit',
+    name: 'DPS Winter Sports Kit',
     school: 'Delhi Public School',
-    className: 'Class 3',
-    subtitle: 'Drawing book + jumbo pencils + crayons + activity notebook',
+    className: 'Class 5',
+    subtitle: 'Tracksuit + PT Shoes + Winter Muffler',
     category: 'kits',
-    price: 899,
-    originalPrice: 1199,
-    discountBadge: 'PRIMARY PICK',
+    price: 1899,
+    originalPrice: 2197,
+    discountBadge: 'WINTER READY',
     rating: 4.8,
     reviewsCount: 312,
     inStock: true,
-    image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=900&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=900&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=900&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=900&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=900&auto=format&fit=crop&q=80'
     ],
     kitItems: [
-      { id: 9, name: 'Colorful Drawing Book', price: 179 },
-      { id: 2, name: 'Jumbo Pencil Set', price: 199 },
-      { id: 17, name: 'Wax Crayons Set', price: 249 },
-      { id: 1, name: 'Activity Notebook', price: 199 }
+      { id: 3, name: 'Unisex Sports Tracksuit', price: 1299, image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=500&auto=format&fit=crop&q=80' },
+      { id: 5, name: 'White Canvas PT Shoes', price: 499, image: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500&auto=format&fit=crop&q=80' },
+      { id: 10, name: 'Winter Muffler & Beanie Set', price: 399, image: 'https://images.unsplash.com/photo-1579910404018-971eb05e83ea?w=500&auto=format&fit=crop&q=80' }
     ]
   },
   {
     id: 1005,
-    name: 'Ryan Middle School Study Kit',
-    school: 'Ryan International',
-    className: 'Class 8',
-    subtitle: 'Subject notebooks + gel pens + index tabs + study planner',
+    name: 'Kendriya Vidyalaya Monsoon Kit',
+    school: 'Kendriya Vidyalaya',
+    className: 'Class 3',
+    subtitle: 'Raincoat + Water Bottle + Cursive Practice Book',
     category: 'kits',
-    price: 1199,
-    originalPrice: 1599,
-    discountBadge: 'STUDY BUNDLE',
+    price: 1299,
+    originalPrice: 1428,
+    discountBadge: 'MONSOON BUNDLE',
     rating: 4.8,
     reviewsCount: 428,
     inStock: true,
-    image: 'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=900&auto=format&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=900&auto=format&fit=crop&q=80',
     images: [
-      'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=900&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=900&auto=format&fit=crop&q=80'
+      'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=900&auto=format&fit=crop&q=80'
     ],
     kitItems: [
-      { id: 10, name: 'Subject Notebook Set', price: 329 },
-      { id: 2, name: 'Gel Pen Set', price: 249 },
-      { id: 8, name: 'Index Tabs and Sticky Notes', price: 149 },
-      { id: 6, name: 'Study Planner', price: 399 }
-    ]
-  },
-  {
-    id: 1006,
-    name: 'Kendriya Vidyalaya Exam Kit',
-    school: 'Kendriya Vidyalaya',
-    className: 'Class 10',
-    subtitle: 'Graph notebook + revision cards + highlighters + geometry set',
-    category: 'kits',
-    price: 999,
-    originalPrice: 1399,
-    discountBadge: 'EXAM READY',
-    rating: 4.9,
-    reviewsCount: 516,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=900&auto=format&fit=crop&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=900&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1588072432836-e10032774350?w=900&auto=format&fit=crop&q=80'
-    ],
-    kitItems: [
-      { id: 10, name: 'Graph Grid Math Notebook', price: 279 },
-      { id: 3, name: 'Pastel Highlighters Set', price: 189 },
-      { id: 8, name: 'Revision Cards', price: 159 },
-      { id: 4, name: 'Geometry and Math Set', price: 299 }
-    ]
-  },
-  {
-    id: 1007,
-    name: 'DPS Senior Commerce Kit',
-    school: 'Delhi Public School',
-    className: 'Class 12',
-    subtitle: 'Ledger notebook + planner + sticky notes + premium pens',
-    category: 'kits',
-    price: 1299,
-    originalPrice: 1749,
-    discountBadge: 'SENIOR KIT',
-    rating: 4.9,
-    reviewsCount: 286,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=900&auto=format&fit=crop&q=80',
-    images: [
-      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=900&auto=format&fit=crop&q=80',
-      'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=900&auto=format&fit=crop&q=80'
-    ],
-    kitItems: [
-      { id: 1, name: 'Hardbound Ledger Notebook', price: 349 },
-      { id: 6, name: 'Academic Planner', price: 549 },
-      { id: 8, name: 'Premium Sticky Notes', price: 129 },
-      { id: 2, name: 'Premium Gel Pen Set', price: 249 }
+      { id: 8, name: 'Kids Waterproof Raincoat', price: 649, image: 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=500&auto=format&fit=crop&q=80' },
+      { id: 19, name: 'Stainless Steel Water Bottle', price: 599, image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&auto=format&fit=crop&q=80' },
+      { id: 16, name: 'Cursive Handwriting Practice Set', price: 180, image: 'https://images.unsplash.com/photo-1503694978374-8a2fa686963a?w=500&auto=format&fit=crop&q=80' }
     ]
   }
 ];
 
 export const ALL_PRODUCTS = [
-  ...BEST_SELLERS,
-  ...KIT_BUNDLES,
+  // 50% CLOTHING & ACCESSORIES (10 items)
+  {
+    id: 1,
+    name: 'Boys Summer Uniform Set (White/Navy)',
+    subtitle: 'Classic half-sleeve shirt with navy shorts',
+    price: 899,
+    originalPrice: 1099,
+    rating: 4.8,
+    reviews: 124,
+    image: 'https://images.unsplash.com/photo-1593032465175-481ac7f401a0?w=500&auto=format&fit=crop&q=80',
+    category: 'uniforms',
+    badge: 'BESTSELLER',
+    schoolSpecific: false
+  },
+  {
+    id: 2,
+    name: 'Girls Tunic Dress Uniform (Checkered)',
+    subtitle: 'Comfortable knee-length pleated tunic',
+    price: 949,
+    originalPrice: 1199,
+    rating: 4.9,
+    reviews: 89,
+    image: 'https://plus.unsplash.com/premium_photo-1673356302067-aac3b545a362?w=500&auto=format&fit=crop&q=80',
+    category: 'uniforms',
+    schoolSpecific: false
+  },
+  {
+    id: 3,
+    name: 'Unisex Sports Tracksuit (Blue/White)',
+    subtitle: 'Breathable polyester PT tracksuit',
+    price: 1299,
+    originalPrice: 1599,
+    rating: 4.7,
+    reviews: 210,
+    image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=500&auto=format&fit=crop&q=80',
+    category: 'sports',
+    badge: 'NEW ARRIVAL'
+  },
+  {
+    id: 4,
+    name: 'Black Leather School Shoes (Lace-up)',
+    subtitle: 'Durable anti-slip sole for daily wear',
+    price: 799,
+    originalPrice: 999,
+    rating: 4.6,
+    reviews: 340,
+    image: 'https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=500&auto=format&fit=crop&q=80',
+    category: 'shoes'
+  },
+  {
+    id: 5,
+    name: 'White Canvas PT Shoes (Velcro)',
+    subtitle: 'Lightweight canvas shoes for sports',
+    price: 499,
+    originalPrice: 699,
+    rating: 4.5,
+    reviews: 150,
+    image: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500&auto=format&fit=crop&q=80',
+    category: 'shoes'
+  },
+  {
+    id: 6,
+    name: 'Navy Blue Winter Sweater (V-Neck)',
+    subtitle: 'Warm woolen blend for chilly mornings',
+    price: 849,
+    originalPrice: 1049,
+    rating: 4.8,
+    reviews: 280,
+    image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=500&auto=format&fit=crop&q=80',
+    category: 'winter'
+  },
+  {
+    id: 7,
+    name: 'School Winter Blazer (Maroon)',
+    subtitle: 'Premium tailored blazer with brass buttons',
+    price: 1899,
+    originalPrice: 2499,
+    rating: 4.9,
+    reviews: 75,
+    image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&auto=format&fit=crop&q=80',
+    category: 'winter',
+    badge: 'PREMIUM'
+  },
+  {
+    id: 8,
+    name: 'Kids Waterproof Raincoat with Hood',
+    subtitle: 'Bright yellow PVC raincoat for monsoons',
+    price: 649,
+    originalPrice: 899,
+    rating: 4.7,
+    reviews: 110,
+    image: 'https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=500&auto=format&fit=crop&q=80',
+    category: 'rain',
+    badge: 'MONSOON READY'
+  },
   {
     id: 9,
-    name: 'Hardbound Dotted Bullet Journal',
-    subtitle: '180gsm Ultra-Thick • No Bleedthrough',
-    category: 'notebooks',
-    price: 389,
+    name: 'Unisex Sports T-Shirt (House Colors)',
+    subtitle: 'Red, Blue, Green, Yellow available',
+    price: 349,
     originalPrice: 499,
-    discountBadge: '22% OFF',
-    rating: 4.9,
-    reviewsCount: 420,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500&auto=format&fit=crop&q=80'
+    rating: 4.4,
+    reviews: 420,
+    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&auto=format&fit=crop&q=80',
+    category: 'sports'
   },
   {
     id: 10,
-    name: 'Graph Grid Math Notebook (3 Pack)',
-    subtitle: 'Quadrant Ruled • Ideal for Engineering & STEM',
-    category: 'notebooks',
-    price: 279,
-    originalPrice: 399,
-    discountBadge: '30% OFF',
-    rating: 4.8,
-    reviewsCount: 310,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=500&auto=format&fit=crop&q=80'
+    name: 'Winter Muffler & Beanie Set',
+    subtitle: 'Matching warm accessories',
+    price: 399,
+    originalPrice: 599,
+    rating: 4.6,
+    reviews: 88,
+    image: 'https://images.unsplash.com/photo-1579910404018-971eb05e83ea?w=500&auto=format&fit=crop&q=80',
+    category: 'winter'
   },
+
+  // 30% BOOKS (6 items)
   {
     id: 11,
-    name: 'Calligraphy Brush Pen Set (12 Shades)',
-    subtitle: 'Flexible Nylon Tips • Water-based Blendable',
-    category: 'pens',
-    price: 449,
-    originalPrice: 650,
-    discountBadge: '31% OFF',
+    name: 'Class 5 NCERT Textbook Bundle',
+    subtitle: 'Maths, Science, English, Hindi, EVS',
+    price: 850,
+    originalPrice: 950,
     rating: 4.9,
-    reviewsCount: 840,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&auto=format&fit=crop&q=80'
+    reviews: 530,
+    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=500&auto=format&fit=crop&q=80',
+    category: 'ncert',
+    badge: 'COMPLETE SET'
   },
   {
     id: 12,
-    name: 'Fineliner Color Sketch Pens (0.4mm)',
-    subtitle: 'Precision Metal Clad Tip • 24 Vibrant Inks',
-    category: 'pens',
-    price: 349,
-    originalPrice: 499,
-    discountBadge: '30% OFF',
-    rating: 4.7,
-    reviewsCount: 615,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=500&auto=format&fit=crop&q=80'
+    name: 'Olympiad Practice Workbooks (Set of 3)',
+    subtitle: 'Maths, Science & Cyber Olympiad guides',
+    price: 540,
+    originalPrice: 650,
+    rating: 4.8,
+    reviews: 215,
+    image: 'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=500&auto=format&fit=crop&q=80',
+    category: 'practice_books'
   },
   {
     id: 13,
-    name: 'Matte Metal Stapler & Clip Combo',
-    subtitle: 'Heavy-Duty 25 Sheet Capacity • Includes 1000 Pins',
-    category: 'supplies',
-    price: 229,
-    originalPrice: 320,
-    discountBadge: '28% OFF',
-    rating: 4.6,
-    reviewsCount: 230,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=500&auto=format&fit=crop&q=80'
+    name: 'Kids Magic Water Coloring Book',
+    subtitle: 'Reusable drawing book with water pen',
+    price: 299,
+    originalPrice: 450,
+    rating: 4.7,
+    reviews: 320,
+    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&auto=format&fit=crop&q=80',
+    category: 'drawing_books',
+    badge: 'FUN LEARNING'
   },
   {
     id: 14,
-    name: 'Vintage Pastel Binder Clips (30pcs)',
-    subtitle: 'Assorted Sizes in Reusable Acrylic Jar',
-    category: 'supplies',
-    price: 159,
-    originalPrice: 229,
-    discountBadge: '30% OFF',
-    rating: 4.8,
-    reviewsCount: 512,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=500&auto=format&fit=crop&q=80'
+    name: 'A4 Sketch Book (100 Pages, 140 GSM)',
+    subtitle: 'Thick paper suitable for watercolors & pencils',
+    price: 199,
+    originalPrice: 250,
+    rating: 4.9,
+    reviews: 410,
+    image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=500&auto=format&fit=crop&q=80',
+    category: 'drawing_books'
   },
   {
     id: 15,
-    name: 'Water-Resistant Campus Backpack 22L',
-    subtitle: 'Padded Laptop Sleeve • Ergonomic Shoulder Straps',
-    category: 'bags',
-    price: 899,
-    originalPrice: 1499,
-    discountBadge: '40% OFF',
-    rating: 4.9,
-    reviewsCount: 1580,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&auto=format&fit=crop&q=80'
+    name: 'Class 10 CBSE 10-Year Question Bank',
+    subtitle: 'Previous year solved board papers',
+    price: 499,
+    originalPrice: 650,
+    rating: 4.8,
+    reviews: 650,
+    image: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?w=500&auto=format&fit=crop&q=80',
+    category: 'practice_books',
+    badge: 'MUST HAVE'
   },
   {
     id: 16,
-    name: 'Double-Decker Standing Pen Case',
-    subtitle: 'Telescopic Pop-up Design • Corduroy Texture',
-    category: 'bags',
-    price: 249,
-    originalPrice: 399,
-    discountBadge: 'HOT',
-    rating: 4.8,
-    reviewsCount: 760,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=500&auto=format&fit=crop&q=80'
+    name: 'Cursive Handwriting Practice Set',
+    subtitle: '4 part series for primary students',
+    price: 180,
+    originalPrice: 240,
+    rating: 4.6,
+    reviews: 145,
+    image: 'https://images.unsplash.com/photo-1503694978374-8a2fa686963a?w=500&auto=format&fit=crop&q=80',
+    category: 'practice_books'
   },
+
+  // 20% STATIONERY / OTHER (4 items)
   {
     id: 17,
-    name: 'Artist Watercolor Paint Pan Set (36 Colors)',
-    subtitle: 'Includes Refillable Water Brush & Mixing Palette',
-    category: 'art',
-    price: 599,
-    originalPrice: 899,
-    discountBadge: '33% OFF',
-    rating: 4.9,
-    reviewsCount: 920,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&auto=format&fit=crop&q=80'
+    name: 'Premium Gel Pens (Pack of 10)',
+    subtitle: '0.5mm tip, smear-proof blue ink',
+    price: 150,
+    originalPrice: 200,
+    rating: 4.7,
+    reviews: 890,
+    image: 'https://images.unsplash.com/photo-1585336261022-680e295ce3fe?w=500&auto=format&fit=crop&q=80',
+    category: 'supplies',
+    badge: 'BESTSELLER'
   },
   {
     id: 18,
-    name: 'Heavyweight Mixed Media Pad (A4)',
-    subtitle: '300gsm Cold-Pressed • Ideal for Gouache & Ink',
-    category: 'art',
-    price: 329,
-    originalPrice: 450,
-    discountBadge: '27% OFF',
-    rating: 4.9,
-    reviewsCount: 440,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500&auto=format&fit=crop&q=80'
+    name: 'Precision Geometry Compass Box',
+    subtitle: 'Metallic finish with high quality instruments',
+    price: 249,
+    originalPrice: 350,
+    rating: 4.8,
+    reviews: 275,
+    image: 'https://images.unsplash.com/photo-1596495578065-6e0763fa1178?w=500&auto=format&fit=crop&q=80',
+    category: 'supplies'
   },
   {
     id: 19,
-    name: 'Student Habit & Goal Tracker Planner',
-    subtitle: 'Undated 12-Month • Monthly Milestones & Reflections',
-    category: 'planners',
-    price: 399,
-    originalPrice: 599,
-    discountBadge: '33% OFF',
-    rating: 4.8,
-    reviewsCount: 680,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=500&auto=format&fit=crop&q=80'
+    name: 'Stainless Steel Water Bottle (750ml)',
+    subtitle: 'Leak-proof, BPA-free vacuum insulated',
+    price: 599,
+    originalPrice: 899,
+    rating: 4.5,
+    reviews: 310,
+    image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&auto=format&fit=crop&q=80',
+    category: 'accessories'
   },
   {
     id: 20,
-    name: 'Daily Desk Time-Block Pad (60 Tear-Offs)',
-    subtitle: 'Priority Matrix • Hourly Schedule & Notes',
-    category: 'planners',
-    price: 179,
-    originalPrice: 250,
-    discountBadge: '28% OFF',
-    rating: 4.7,
-    reviewsCount: 390,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=500&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 21,
-    name: 'Deluxe Back-to-School Hamper Kit',
-    subtitle: 'Complete 15-Item Student Stationery Package',
-    category: 'gifts',
-    price: 999,
-    originalPrice: 1599,
-    discountBadge: '38% OFF',
-    rating: 5.0,
-    reviewsCount: 1420,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=500&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 22,
-    name: 'Young Artist Gift Box with Wooden Easel',
-    subtitle: 'Paints, Brushes, Canvases, Palette & Case',
-    category: 'gifts',
+    name: 'Ergonomic Student Backpack (24L)',
+    subtitle: 'Water-resistant with laptop sleeve',
     price: 1199,
-    originalPrice: 1799,
-    discountBadge: '33% OFF',
+    originalPrice: 1599,
     rating: 4.9,
-    reviewsCount: 890,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 23,
-    name: 'Precision Geometry Math Box Set',
-    subtitle: 'Metal Compass, Divider, Set Squares & Protractor',
-    category: 'supplies',
-    price: 199,
-    originalPrice: 280,
-    discountBadge: '29% OFF',
-    rating: 4.8,
-    reviewsCount: 540,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=500&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 24,
-    name: 'Mechanical Drafting Pencil Trio (0.5, 0.7, 0.9mm)',
-    subtitle: 'Full Metal Body • Non-Slip Knurled Grip + Lead Tubes',
-    category: 'pens',
-    price: 369,
-    originalPrice: 499,
-    discountBadge: '26% OFF',
-    rating: 4.9,
-    reviewsCount: 710,
-    inStock: true,
-    image: '/images/drafting-pencils.jpg'
-  },
-  {
-    id: 25,
-    name: 'Recycled Kraft Spiral Pocket Notebooks (5 Pack)',
-    subtitle: 'Eco-Friendly Unbleached Paper • Compact 3.5x5.5"',
-    category: 'notebooks',
-    price: 219,
-    originalPrice: 320,
-    discountBadge: '31% OFF',
-    rating: 4.8,
-    reviewsCount: 430,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1531346878377-a5be20888e57?w=500&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 26,
-    name: 'Kawaii Animal Eraser Collection (12pcs)',
-    subtitle: 'Non-Smudge Thermoplastic • Fun Puzzle Design',
-    category: 'supplies',
-    price: 119,
-    originalPrice: 179,
-    discountBadge: '34% OFF',
-    rating: 4.7,
-    reviewsCount: 650,
-    inStock: true,
-    image: '/images/kawaii-erasers.jpg'
-  },
-  {
-    id: 27,
-    name: 'Heavy Canvas Tote Bag with Pen Slots',
-    subtitle: '100% Organic Cotton • Fits Laptops up to 15.6"',
+    reviews: 580,
+    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&auto=format&fit=crop&q=80',
     category: 'bags',
-    price: 399,
-    originalPrice: 599,
-    discountBadge: '33% OFF',
-    rating: 4.9,
-    reviewsCount: 520,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 28,
-    name: 'Dual-Tip Alcohol Art Markers (24 Colors)',
-    subtitle: 'Chisel & Fine Nibs • Fast Drying with Zipper Pouch',
-    category: 'art',
-    price: 749,
-    originalPrice: 1099,
-    discountBadge: '32% OFF',
-    rating: 4.9,
-    reviewsCount: 1140,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 29,
-    name: 'Study Revision Flashcards Box (200 Cards)',
-    subtitle: 'Color-Coded Rings • Heavy Index Cardstock',
-    category: 'supplies',
-    price: 169,
-    originalPrice: 249,
-    discountBadge: '32% OFF',
-    rating: 4.8,
-    reviewsCount: 380,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1586075010923-2dd4570fb338?w=500&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 30,
-    name: 'Teacher Appreciation Gift Box',
-    subtitle: 'Laser-Engraved Wooden Pen, Notebook, Mug & Bookmark',
-    category: 'gifts',
-    price: 849,
-    originalPrice: 1200,
-    discountBadge: '29% OFF',
-    rating: 5.0,
-    reviewsCount: 780,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=500&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 31,
-    name: 'Exam Warrior Transparent Pouch Set (3pcs)',
-    subtitle: 'Board Exam Approved • Clear Heavy-Duty PVC',
-    category: 'bags',
-    price: 149,
-    originalPrice: 220,
-    discountBadge: '32% OFF',
-    rating: 4.8,
-    reviewsCount: 940,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=500&auto=format&fit=crop&q=80'
-  },
-  {
-    id: 32,
-    name: 'Weekly Meal & Fitness Desk Planner',
-    subtitle: '52 Tear-off Sheets • Fridge Magnetic Backing',
-    category: 'planners',
-    price: 249,
-    originalPrice: 349,
-    discountBadge: '28% OFF',
-    rating: 4.7,
-    reviewsCount: 290,
-    inStock: true,
-    image: 'https://images.unsplash.com/photo-1506784365847-bbad939e9335?w=500&auto=format&fit=crop&q=80'
+    badge: 'NEW ARRIVAL'
   }
 ];
 
 export const HERO_SLIDES = [
   {
-    eyebrow: 'WRITE. PLAN. CREATE.',
-    title: 'Everything You Need, All in One Place.',
-    description: 'Discover high-quality stationery and school essentials designed for every idea, lesson, and creative project.',
-    primaryCta: 'SHOP NOW',
-    secondaryCta: 'EXPLORE COLLECTION',
-    badge: 'NEW SCHOOL TERM ARRIVALS',
-    image: 'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=800&auto=format&fit=crop&q=80'
+    eyebrow: 'SCHOOL UNIFORMS',
+    title: 'Comfortable & Durable School Dresses',
+    description: 'Find perfect-fitting, premium quality uniforms for all major schools. Summer, winter, and sportswear available.',
+    primaryCta: 'SHOP UNIFORMS',
+    secondaryCta: 'VIEW SCHOOLS',
+    badge: 'NEW ACADEMIC SESSION',
+    image: 'https://images.unsplash.com/photo-1593032465175-481ac7f401a0?w=800&auto=format&fit=crop&q=80'
   },
   {
-    eyebrow: 'INSPIRE YOUR STUDY ROUTINE',
-    title: 'Aesthetic Planners & Smooth Writing Tools',
-    description: 'Elevate your daily notes and bullet journals with curated pastel pens, highlighters, and hardbound organizers.',
-    primaryCta: 'VIEW PLANNERS',
-    secondaryCta: 'PEN KITS',
-    badge: 'UP TO 30% OFF',
-    image: 'https://images.unsplash.com/photo-1516962215378-7fa2e137ae93?w=800&auto=format&fit=crop&q=80'
+    eyebrow: 'NCERT & COURSE BOOKS',
+    title: 'Complete Syllabus Books for All Classes',
+    description: 'Get your entire book set in one place. NCERT textbooks, reference guides, and sample papers for board exams.',
+    primaryCta: 'BUY BOOKS',
+    secondaryCta: 'CLASS WISE KITS',
+    badge: '100% GENUINE BOOKS',
+    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&auto=format&fit=crop&q=80'
   },
   {
-    eyebrow: 'EXPRESS YOURSELF',
-    title: 'Premium Art & Craft Supplies',
-    description: 'Bring your imagination to life with our collection of vibrant paints, professional markers, and heavy-weight sketchbooks.',
-    primaryCta: 'SHOP ART',
-    secondaryCta: 'CRAFT KITS',
-    badge: 'CREATIVE ESSENTIALS',
+    eyebrow: 'PRACTICE & DRAWING',
+    title: 'Workbook & Art Supplies for Kids',
+    description: 'Foster creativity and learning with our exclusive range of magic coloring books, olympiad prep, and art supplies.',
+    primaryCta: 'EXPLORE ART',
+    secondaryCta: 'WORKBOOKS',
+    badge: 'FUN LEARNING',
     image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&auto=format&fit=crop&q=80'
   },
   {
     eyebrow: 'BACK TO CAMPUS',
-    title: 'Ergonomic Bags & Smart Organizers',
-    description: 'Carry your world effortlessly. Discover our new range of water-resistant, durable backpacks designed for modern students.',
-    primaryCta: 'VIEW BAGS',
-    secondaryCta: 'ORGANIZERS',
-    badge: 'NEW ARRIVALS',
-    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&auto=format&fit=crop&q=80'
+    title: 'Complete School Specific Kits',
+    description: 'Save time by buying pre-bundled school kits including uniforms, textbooks, notebooks, and essential stationery.',
+    primaryCta: 'VIEW KITS',
+    secondaryCta: 'ALL CATEGORIES',
+    badge: 'UP TO 15% OFF KITS',
+    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&auto=format&fit=crop&q=80'
   }
 ];
 
@@ -780,7 +681,7 @@ export const ABOUT_DATA = {
     {
       year: '2021',
       title: 'The Missing Notebook Dilemma',
-      description: 'School Cart began in a small college dorm room when our founders realized that premium study notebooks and smooth writing pens were either low-quality or ridiculously overpriced.'
+      description: 'Book Vardi began in a small college dorm room when our founders realized that premium study notebooks and smooth writing pens were either low-quality or ridiculously overpriced.'
     },
     {
       year: '2023',
@@ -795,7 +696,7 @@ export const ABOUT_DATA = {
     {
       year: '2026',
       title: 'Empowering 50,000+ Young Creators',
-      description: 'Today, School Cart stands as India’s fastest-growing student-centric stationery brand, celebrated for aesthetic designs, ethical pricing, and unmatched durability.'
+      description: 'Today, Book Vardi stands as India’s fastest-growing student-centric stationery brand, celebrated for aesthetic designs, ethical pricing, and unmatched durability.'
     }
   ],
   values: [
@@ -823,7 +724,7 @@ export const ABOUT_DATA = {
     {
       id: 4,
       title: 'Give-Back Community Pledge',
-      description: 'For every 10 notebooks purchased, School Cart donates 1 complete student supply kit to underprivileged school children.',
+      description: 'For every 10 notebooks purchased, Book Vardi donates 1 complete student supply kit to underprivileged school children.',
       badge: '1-for-10 Pledge',
       icon: 'HeartHandshake'
     }
@@ -855,7 +756,7 @@ export const ABOUT_DATA = {
       role: "3rd Year MBBS Student, Mumbai"
     },
     {
-      quote: "As an art teacher, finding non-toxic, highly pigmented watercolor sets under ₹600 was impossible until School Cart. My students adore the pan sets.",
+      quote: "As an art teacher, finding non-toxic, highly pigmented watercolor sets under ₹600 was impossible until Book Vardi. My students adore the pan sets.",
       author: "Vikram Sengupta",
       role: "High School Art Educator, Kolkata"
     },

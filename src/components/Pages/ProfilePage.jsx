@@ -228,7 +228,7 @@ export default function ProfilePage({ onNavigate, initialTab = 'profile' }) {
             </div>
 
             <h2 className="font-display text-2xl font-extrabold text-brand-teal">
-              Sign In to School Cart
+              Sign In to Book Vardi
             </h2>
             <p className="text-xs sm:text-sm text-gray-600 mt-2 mb-6 leading-relaxed">
               You are currently logged out. Access your personal details, order history, liked stationery, and saved cart items.
@@ -265,7 +265,7 @@ export default function ProfilePage({ onNavigate, initialTab = 'profile' }) {
                 onClick={() => onNavigate('home')}
                 className="text-xs text-gray-500 hover:text-brand-teal font-medium cursor-pointer"
               >
-                ← Return to School Cart Home
+                ← Return to Book Vardi Home
               </button>
             </div>
           </div>
@@ -1234,7 +1234,7 @@ export default function ProfilePage({ onNavigate, initialTab = 'profile' }) {
                       className="inline-flex items-center gap-2 bg-brand-teal hover:bg-brand-teal-light text-white text-xs font-bold px-6 py-3 rounded-xl transition-all shadow-xs cursor-pointer"
                     >
                       <ShoppingBag size={16} />
-                      <span>Browse School Cart Catalog</span>
+                      <span>Browse Book Vardi Catalog</span>
                     </button>
                   </div>
                 )}

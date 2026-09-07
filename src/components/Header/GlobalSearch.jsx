@@ -10,8 +10,8 @@ export default function GlobalSearch({ onNavigate, onSearch, currentQuery }) {
   const { openProductDetails } = useCart();
 
   // Mock data for search suggestions
-  const recentSearches = ['Pastel Highlighters', 'Grid Notebook', 'Geometry Box'];
-  const topSearches = ['Backpacks', 'Gel Pens', '2026 Planner', 'Sticky Notes'];
+  const recentSearches = ['NCERT Class 10', 'Boys Summer Uniform', 'Olympiad Workbook'];
+  const topSearches = ['Girls Pleated Skirt', 'CBSE Practice Books', 'Kids Drawing Book', 'Winter Sweaters'];
   
   // Get 3 random popular products for recommendations
   const topProducts = ALL_PRODUCTS.filter(p => p.discountBadge === 'BESTSELLER' || p.rating >= 4.9).slice(0, 3);

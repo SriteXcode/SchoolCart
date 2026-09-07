@@ -155,7 +155,7 @@ export default function AboutUsPage({ onNavigate }) {
               HOW WE GREW
             </span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-brand-teal tracking-tight mt-3">
-              The Journey of School Cart
+              The Journey of Book Vardi
             </h2>
             <p className="text-sm text-gray-600 mt-2">
               From late-night study sessions with leaking pens to supplying over 50,000 students across India.
@@ -273,7 +273,7 @@ export default function AboutUsPage({ onNavigate }) {
                   </div>
 
                   <div className="mt-6 pt-4 border-t border-gray-100 flex items-center gap-1 text-xs font-bold text-brand-teal">
-                    <span>School Cart Certified</span>
+                    <span>Book Vardi Certified</span>
                     <CheckCircle2 size={14} className="text-green-600" />
                   </div>
                 </div>

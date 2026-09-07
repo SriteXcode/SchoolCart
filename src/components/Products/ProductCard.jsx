@@ -114,7 +114,7 @@ export default function ProductCard({ product }) {
               ))}
             </div>
             <span className="text-[10px] sm:text-[11px] text-gray-400 hidden xs:inline">
-              ({product.reviewsCount.toLocaleString()})
+              ({(product.reviewsCount || product.reviews || 0).toLocaleString()})
             </span>
           </div>
 

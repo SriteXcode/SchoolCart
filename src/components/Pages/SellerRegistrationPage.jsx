@@ -42,7 +42,7 @@ export default function SellerRegistrationPage({ onNavigate }) {
           </div>
           <h2 className="text-2xl font-display font-extrabold text-brand-teal mb-3">Application Under Review</h2>
           <p className="text-gray-500 text-sm mb-8 leading-relaxed">
-            Thank you for registering your interest to sell on School Cart! Our administration team is currently reviewing your application. You will be notified once approved.
+            Thank you for registering your interest to sell on Book Vardi! Our administration team is currently reviewing your application. You will be notified once approved.
           </p>
 
           <div className="bg-brand-yellow/20 rounded-xl p-4 mb-6">
@@ -77,7 +77,7 @@ export default function SellerRegistrationPage({ onNavigate }) {
         <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-brand-yellow/10 blur-3xl pointer-events-none" />
         <div className="container mx-auto max-w-4xl text-center">
           <h1 className="font-display text-3xl md:text-4xl font-extrabold text-white tracking-tight mb-3">
-            Become a School Cart Seller
+            Become a Book Vardi Seller
           </h1>
           <p className="text-white/80 max-w-xl mx-auto">
             Join India's fastest-growing student marketplace. Reach thousands of students looking for quality stationery and study supplies.
@@ -207,7 +207,7 @@ export default function SellerRegistrationPage({ onNavigate }) {
             </div>
             
             <p className="text-center text-[10px] text-gray-400 mt-4">
-              By submitting, you agree to School Cart's Seller Terms of Service and Privacy Policy.
+              By submitting, you agree to Book Vardi's Seller Terms of Service and Privacy Policy.
             </p>
           </form>
         </div>

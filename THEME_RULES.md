@@ -1,4 +1,4 @@
-# School Cart Design System, Theme Rules & Tailwind CSS Standard
+# Book Vardi Design System, Theme Rules & Tailwind CSS Standard
 
 > **MANDATORY PROJECT RULE**: All developers and AI agents working on this codebase must strictly adhere to the standards outlined in this document.
 

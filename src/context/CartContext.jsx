@@ -98,7 +98,7 @@ export function CartProvider({ children }) {
   // Initialize from localStorage if available
   const [cartItems, setCartItems] = useState(() => {
     try {
-      const saved = localStorage.getItem('school_cart_items_v2');
+      const saved = localStorage.getItem('book_vardi_items_v2');
       return saved ? JSON.parse(saved) : [
         {
           id: 1,
@@ -126,7 +126,7 @@ export function CartProvider({ children }) {
 
   const [wishlist, setWishlist] = useState(() => {
     try {
-      const saved = localStorage.getItem('school_cart_wishlist_v2');
+      const saved = localStorage.getItem('book_vardi_wishlist_v2');
       if (saved) {
         const parsed = JSON.parse(saved);
         return Array.isArray(parsed) ? parsed.map(Number) : [1, 3, 6];
@@ -139,7 +139,7 @@ export function CartProvider({ children }) {
 
   const [userProfile, setUserProfile] = useState(() => {
     try {
-      const saved = localStorage.getItem('school_cart_user_profile');
+      const saved = localStorage.getItem('book_vardi_user_profile');
       return saved ? JSON.parse(saved) : MOCK_USER_PROFILE;
     } catch {
       return MOCK_USER_PROFILE;
@@ -148,7 +148,7 @@ export function CartProvider({ children }) {
 
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     try {
-      const saved = localStorage.getItem('school_cart_is_authenticated');
+      const saved = localStorage.getItem('book_vardi_is_authenticated');
       return saved !== null ? JSON.parse(saved) : true;
     } catch {
       return true;
@@ -167,7 +167,7 @@ export function CartProvider({ children }) {
   // Product reviews store
   const [productReviews, setProductReviews] = useState(() => {
     try {
-      const saved = localStorage.getItem('school_cart_product_reviews');
+      const saved = localStorage.getItem('book_vardi_product_reviews');
       return saved ? JSON.parse(saved) : INITIAL_MOCK_REVIEWS;
     } catch {
       return INITIAL_MOCK_REVIEWS;
@@ -177,7 +177,7 @@ export function CartProvider({ children }) {
   // Most recently placed order (for Order Success Confirmation)
   const [lastPlacedOrder, setLastPlacedOrder] = useState(() => {
     try {
-      const saved = localStorage.getItem('school_cart_last_order');
+      const saved = localStorage.getItem('book_vardi_last_order');
       return saved ? JSON.parse(saved) : null;
     } catch {
       return null;
@@ -190,7 +190,7 @@ export function CartProvider({ children }) {
   // Seller states
   const [sellerStatus, setSellerStatus] = useState(() => {
     try {
-      const saved = localStorage.getItem('school_cart_seller_status');
+      const saved = localStorage.getItem('book_vardi_seller_status');
       return saved ? JSON.parse(saved) : null; // null | 'pending' | 'approved'
     } catch {
       return null;
@@ -199,7 +199,7 @@ export function CartProvider({ children }) {
 
   const [sellerProfile, setSellerProfile] = useState(() => {
     try {
-      const saved = localStorage.getItem('school_cart_seller_profile');
+      const saved = localStorage.getItem('book_vardi_seller_profile');
       return saved ? JSON.parse(saved) : null;
     } catch {
       return null;
@@ -208,7 +208,7 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem('school_cart_seller_status', JSON.stringify(sellerStatus));
+      localStorage.setItem('book_vardi_seller_status', JSON.stringify(sellerStatus));
     } catch (e) {
       console.error(e);
     }
@@ -216,7 +216,7 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem('school_cart_seller_profile', JSON.stringify(sellerProfile));
+      localStorage.setItem('book_vardi_seller_profile', JSON.stringify(sellerProfile));
     } catch (e) {
       console.error(e);
     }
@@ -236,7 +236,7 @@ export function CartProvider({ children }) {
   // Sync to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem('school_cart_items_v2', JSON.stringify(cartItems));
+      localStorage.setItem('book_vardi_items_v2', JSON.stringify(cartItems));
     } catch (e) {
       console.error(e);
     }
@@ -244,7 +244,7 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem('school_cart_wishlist_v2', JSON.stringify(wishlist));
+      localStorage.setItem('book_vardi_wishlist_v2', JSON.stringify(wishlist));
     } catch (e) {
       console.error(e);
     }
@@ -252,7 +252,7 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem('school_cart_user_profile', JSON.stringify(userProfile));
+      localStorage.setItem('book_vardi_user_profile', JSON.stringify(userProfile));
     } catch (e) {
       console.error(e);
     }
@@ -260,7 +260,7 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem('school_cart_is_authenticated', JSON.stringify(isAuthenticated));
+      localStorage.setItem('book_vardi_is_authenticated', JSON.stringify(isAuthenticated));
     } catch (e) {
       console.error(e);
     }
@@ -268,7 +268,7 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     try {
-      localStorage.setItem('school_cart_product_reviews', JSON.stringify(productReviews));
+      localStorage.setItem('book_vardi_product_reviews', JSON.stringify(productReviews));
     } catch (e) {
       console.error(e);
     }
@@ -277,7 +277,7 @@ export function CartProvider({ children }) {
   useEffect(() => {
     try {
       if (lastPlacedOrder) {
-        localStorage.setItem('school_cart_last_order', JSON.stringify(lastPlacedOrder));
+        localStorage.setItem('book_vardi_last_order', JSON.stringify(lastPlacedOrder));
       }
     } catch (e) {
       console.error(e);
@@ -506,7 +506,7 @@ export function CartProvider({ children }) {
     setUserProfile(freshProfile);
     setIsAuthenticated(true);
     closeAuthModal();
-    showToast(`🎉 Welcome to School Cart, ${newUserData.name}! Account created.`);
+    showToast(`🎉 Welcome to Book Vardi, ${newUserData.name}! Account created.`);
   };
 
   const logout = () => {

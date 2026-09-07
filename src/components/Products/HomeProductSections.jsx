@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import ProductCarouselRow from './ProductCarouselRow';
-import GrabKitSection from './GrabKitSection';
 import { ALL_PRODUCTS } from '../../data/mockData';
 
 // Helper to deterministically shuffle/slice based on a seed or just statically to avoid re-renders
@@ -48,6 +47,7 @@ export default function HomeProductSections({ activeCategory, searchQuery, onNav
 
   return (
     <div id="bestsellers" className="bg-gray-50/70 pt-8 pb-4 flex flex-col gap-2">
+
       <ProductCarouselRow 
         title="Recently Viewed"
         products={recentlyViewed}
@@ -55,21 +55,12 @@ export default function HomeProductSections({ activeCategory, searchQuery, onNav
         autoScroll={true}
         autoScrollInterval={4000}
       />
-      
       <ProductCarouselRow 
-        title="Featured"
+        title="Featured & Trending"
         products={featured}
         onViewAll={() => onNavigate('products')}
         autoScroll={true}
         autoScrollInterval={4500}
-      />
-      
-      <ProductCarouselRow 
-        title="Recommended for You"
-        products={recommended}
-        onViewAll={() => onNavigate('products')}
-        autoScroll={true}
-        autoScrollInterval={5000}
       />
       
       <ProductCarouselRow 
@@ -80,7 +71,13 @@ export default function HomeProductSections({ activeCategory, searchQuery, onNav
         autoScrollInterval={3500}
       />
 
-      <GrabKitSection onNavigate={onNavigate} />
+      <ProductCarouselRow 
+        title="Recommended for You"
+        products={recommended}
+        onViewAll={() => onNavigate('products')}
+        autoScroll={true}
+        autoScrollInterval={5000}
+      />
     </div>
   );
 }

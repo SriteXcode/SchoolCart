@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Truck, RotateCcw, ShieldCheck, Headphones } from 'lucide-react';
 import {
   InstagramIcon,
@@ -11,6 +11,7 @@ import { useCart } from '../../context/CartContext';
 
 export default function Footer({ onNavigate }) {
   const { isAuthenticated, sellerStatus } = useCart();
+  const [showAllCategories, setShowAllCategories] = useState(false);
   return (
     <footer className="bg-brand-teal text-white pt-16 border-t border-white/10" id="footer">
       <div className="container mx-auto px-4">
@@ -23,11 +24,11 @@ export default function Footer({ onNavigate }) {
             >
               <img
                 src="/logo.png"
-                alt="School Cart"
+                alt="Book Vardi"
                 className="h-10 w-auto object-contain bg-white p-1 rounded"
               />
               <span className="font-display text-xl font-extrabold text-white tracking-tight">
-                SCHOOL<span className="text-brand-yellow">CART</span>
+                BOOK<span className="text-brand-yellow">VARDI</span>
               </span>
             </button>
 
@@ -66,7 +67,7 @@ export default function Footer({ onNavigate }) {
                   All Products
                 </button>
               </li>
-              {CATEGORIES.map((cat) => (
+              {(showAllCategories ? CATEGORIES : CATEGORIES.slice(0, 8)).map((cat) => (
                 <li key={cat.id}>
                   <button
                     onClick={() => onNavigate && onNavigate('products', cat.id)}
@@ -76,6 +77,16 @@ export default function Footer({ onNavigate }) {
                   </button>
                 </li>
               ))}
+              {CATEGORIES.length > 8 && (
+                <li>
+                  <button
+                    onClick={() => setShowAllCategories(!showAllCategories)}
+                    className="text-brand-yellow hover:text-white font-bold transition-colors cursor-pointer text-left flex items-center gap-1 mt-1"
+                  >
+                    {showAllCategories ? 'Show Less' : 'Show More'}
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
 
@@ -191,7 +202,7 @@ export default function Footer({ onNavigate }) {
         {/* Bottom Bar */}
         <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/60 text-center sm:text-left">
-            © {new Date().getFullYear()} School Cart Stationery Store. All Rights Reserved. Built with School Cart Design System.
+            © {new Date().getFullYear()} Book Vardi Stationery Store. All Rights Reserved. Built with Book Vardi Design System.
           </p>
 
           <div className="flex items-center gap-2 flex-wrap">

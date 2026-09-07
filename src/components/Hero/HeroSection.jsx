@@ -104,7 +104,7 @@ export default function HeroSection({ onNavigate }) {
             <div className="relative rounded-2xl overflow-hidden p-3 bg-gradient-to-br from-brand-yellow/20 via-pink-50 to-brand-pink/20 border border-gray-200 shadow-xl">
               <img
                 src={slide.image}
-                alt="School Cart Stationery Showcase"
+                alt="Book Vardi Stationery Showcase"
                 className="w-full h-80 sm:h-96 object-cover rounded-xl transition-transform duration-500 hover:scale-[1.02]"
               />
 

@@ -371,7 +371,7 @@ export default function AuthModal() {
             {authMode === 'login'
               ? 'Sign in to access your orders, saved addresses & student discounts.'
               : authMode === 'register'
-              ? 'Join School Cart to earn reward points & exclusive discounts on stationery.'
+              ? 'Join Book Vardi to earn reward points & exclusive discounts on stationery.'
               : 'Verify your student account via OTP sent to your email or phone.'}
           </p>
 
@@ -999,7 +999,7 @@ export default function AuthModal() {
                     Password Reset Complete!
                   </h4>
                   <p className="text-xs text-gray-500 max-w-xs mx-auto">
-                    Your password has been securely updated. Signing you into School Cart now...
+                    Your password has been securely updated. Signing you into Book Vardi now...
                   </p>
                 </div>
               )}

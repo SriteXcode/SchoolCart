@@ -479,7 +479,7 @@ export default function ProductDetailPage({ onNavigate }) {
               <div className="md:col-span-6 flex flex-col space-y-5">
                 <div>
                   <span className="text-xs font-extrabold uppercase tracking-widest text-brand-ochre">
-                    SCHOOL CART ACADEMIC ESSENTIALS
+                    BOOK VARDI ACADEMIC ESSENTIALS
                   </span>
                   <h1 className="font-display text-2xl sm:text-3xl font-extrabold text-brand-teal mt-1 leading-tight">
                     {selectedProduct.name}

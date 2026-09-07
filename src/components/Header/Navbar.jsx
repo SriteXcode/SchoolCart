@@ -5,13 +5,18 @@ import { NAV_LINKS, CATEGORIES } from '../../data/mockData';
 import GlobalSearch from './GlobalSearch';
 
 const MEGA_MENU_DATA = {
-  notebooks: ['Spiral Notebooks', 'Hardcover Journals', 'Dotted & Grid', 'Subject Notebooks'],
-  pens: ['Gel & Ballpoint Pens', 'Highlighters', 'Markers & Fineliners', 'Mechanical Pencils'],
-  supplies: ['Desk Organizers', 'Staplers & Clips', 'Sticky Notes', 'Geometry Sets'],
-  bags: ['School Backpacks', 'Laptop Bags', 'Pencil Cases', 'Tote Bags'],
-  art: ['Paints & Watercolors', 'Sketchbooks', 'Brushes & Tools', 'Crafting Kits'],
-  planners: ['Academic Planners', 'Daily Journals', 'Weekly Desk Pads', 'Wall Calendars'],
-  gifts: ['Student Kits', 'Teacher Appreciation', 'Artist Boxes', 'Festive Hampers']
+  uniforms: ['Boys Summer', 'Boys Winter', 'Girls Summer', 'Girls Winter', 'Sports & PT', 'House T-Shirts'],
+  ncert: ['Class 1-5', 'Class 6-8', 'Class 9-10', 'Class 11-12', 'Science & Math', 'Humanities'],
+  practice_books: ['Olympiad Prep', 'Grammar Books', 'Math Workbooks', 'Cursive Writing', 'Sample Papers'],
+  drawing_books: ['Magic Coloring', 'Sketch Books', 'Water Reveal', 'Art Activity', 'Origami'],
+  school_specific: ['Delhi Public School', 'Kendriya Vidyalaya', 'Ryan International', 'Apeejay School', 'DAV Public'],
+  sports: ['PT T-Shirts', 'Trackpants', 'Sports Shorts', 'House Uniforms'],
+  shoes: ['Black Leather Shoes', 'White Canvas Shoes', 'Sports Shoes', 'Socks'],
+  winter: ['Sweaters & Cardigans', 'School Blazers', 'Thermals', 'Winter Caps'],
+  rain: ['Raincoats', 'Umbrellas', 'Waterproof Covers'],
+  supplies: ['Pens & Pencils', 'Geomtery Boxes', 'Notebooks', 'Lunch Boxes', 'Water Bottles'],
+  bags: ['School Backpacks', 'Trolley Bags', 'Pencil Cases', 'Laptop Bags'],
+  kits: ['Full Academic Kits', 'Exam Revision', 'Art Starter Kit', 'Gift Hampers']
 };
 
 // Extracted from original Navbar DesktopProfileDropdown
@@ -354,10 +359,14 @@ export default function Navbar({ currentPage, onNavigate, searchQuery, onSearchC
         >
           <img
             src="/logo.png"
-            alt="School Cart"
+            alt="Book Vardi"
             className="h-11 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
           />
+          <span className="font-display text-xl font-extrabold text-black tracking-tight">
+                BOOK<span className="text-brand-yellow">VARDI</span>
+              </span>
         </button>
+        
 
         {/* Global Search Bar (Desktop) */}
         <div className="hidden lg:flex flex-1 justify-center px-4">

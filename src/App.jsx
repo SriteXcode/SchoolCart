@@ -6,6 +6,7 @@ import HeroSection from './components/Hero/HeroSection';
 import FeaturesBar from './components/Features/FeaturesBar';
 import CategorySection from './components/Categories/CategorySection';
 import HomeProductSections from './components/Products/HomeProductSections';
+import SchoolKitsRow from './components/Products/SchoolKitsRow';
 import PromoBanners from './components/Promotions/PromoBanners';
 import NewsletterSection from './components/Newsletter/NewsletterSection';
 import Footer from './components/Footer/Footer';
@@ -26,6 +27,8 @@ import ContactUsPage from './components/Pages/ContactUsPage';
 import OffersPage from './components/Pages/OffersPage';
 import NewArrivalsPage from './components/Pages/NewArrivalsPage';
 import NotFoundPage from './components/Pages/NotFoundPage';
+import SchoolDirectoryPage from './components/Pages/SchoolDirectoryPage';
+import SchoolDetailsPage from './components/Pages/SchoolDetailsPage';
 
 function MainStore() {
   const { isAuthenticated, openAuthModal, sellerStatus, selectedProduct } = useCart();
@@ -90,12 +93,16 @@ function MainStore() {
         {activePage === 'home' && (
           <>
             <HeroSection onNavigate={navigateTo} />
-
             <PromoBanners onNavigate={navigateTo} />
+            <SchoolKitsRow onNavigate={navigateTo} />
             <CategorySection
               activeCategory={activeCategory}
               onSelectCategory={(catId) => {
-                navigateTo('products', catId);
+                if (catId === 'school_specific') {
+                  navigateTo('school-directory');
+                } else {
+                  navigateTo('products', catId);
+                }
               }}
               onNavigate={navigateTo}
             />
@@ -105,7 +112,7 @@ function MainStore() {
               searchQuery={searchQuery}
               onNavigate={navigateTo}
             />
-            
+
             <FeaturesBar />
 
             <NewsletterSection />
@@ -165,13 +172,22 @@ function MainStore() {
           <SellerDashboardPage onNavigate={navigateTo} />
         )}
 
+        {activePage === 'school-directory' && (
+          <SchoolDirectoryPage onNavigate={navigateTo} />
+        )}
+
+        {activePage === 'school-details' && (
+          <SchoolDetailsPage schoolName={activeCategory} onNavigate={navigateTo} />
+        )}
+
         {/* 404 Fallback */}
         {![
           'home', 'products', 'product-detail', 'about', 'contact', 'offers', 'new-arrivals',
-          'all-categories', 'profile', 'checkout', 'order-success', 'seller-registration', 'seller-dashboard'
+          'all-categories', 'profile', 'checkout', 'order-success', 'seller-registration', 'seller-dashboard',
+          'school-directory', 'school-details'
         ].includes(activePage) && (
-          <NotFoundPage onNavigate={navigateTo} />
-        )}
+            <NotFoundPage onNavigate={navigateTo} />
+          )}
       </main>
 
       {/* Footer */}

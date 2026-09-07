@@ -98,7 +98,7 @@ export default function OrderSuccessPage({ onNavigate }) {
             Order Placed Successfully! 🎉
           </h1>
           <p className="text-sm sm:text-base text-gray-600 max-w-lg mx-auto">
-            Thank you for shopping with <span className="font-bold text-brand-teal">SchoolCart</span>. We’ve received your order and our campus dispatch team is packing your stationery!
+            Thank you for shopping with <span className="font-bold text-brand-teal">BookVardi</span>. We’ve received your order and our campus dispatch team is packing your stationery!
           </p>
 
           {/* Order ID & Student Email notification */}
@@ -355,7 +355,7 @@ export default function OrderSuccessPage({ onNavigate }) {
                 Need assistance with your delivery?
               </p>
               <p className="text-[11px]">
-                Reach out to campus support at <strong className="text-gray-800">help@schoolcart.in</strong> or WhatsApp us at <strong className="text-gray-800">+91 98765 43210</strong>.
+                Reach out to campus support at <strong className="text-gray-800">help@bookvardi.in</strong> or WhatsApp us at <strong className="text-gray-800">+91 98765 43210</strong>.
               </p>
             </div>
           </div>

@@ -24,7 +24,13 @@ export default function AllCategoriesPage({ onNavigate }) {
             <button
               key={cat.id}
               className="group flex flex-col items-center bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-xl hover:border-brand-teal/20 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer text-center"
-              onClick={() => onNavigate('products', cat.id)}
+              onClick={() => {
+                if (cat.id === 'school_specific') {
+                  onNavigate('school-directory');
+                } else {
+                  onNavigate('products', cat.id);
+                }
+              }}
             >
               <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden mb-4 border-2 border-gray-100 group-hover:border-brand-yellow group-hover:ring-4 group-hover:ring-brand-yellow/20 transition-all p-1 bg-gray-50 shadow-xs">
                 <img

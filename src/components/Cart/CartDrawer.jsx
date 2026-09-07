@@ -43,7 +43,7 @@ export default function CartDrawer({ onNavigate }) {
         <div className="p-5 border-b border-gray-200 flex items-center justify-between">
           <div className="flex items-center gap-2 text-lg font-bold text-brand-teal">
             <ShoppingBag size={20} />
-            <span>Your School Cart</span>
+            <span>Your Book Vardi</span>
             <span className="bg-brand-yellow text-brand-teal-dark text-xs font-extrabold px-2 py-0.5 rounded-full">
               {totalItemsCount}
             </span>

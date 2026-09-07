@@ -75,7 +75,7 @@ export default function ContactUsPage() {
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Email Us</h4>
-                  <p className="text-sm font-bold text-gray-900">support@schoolcart.in</p>
+                  <p className="text-sm font-bold text-gray-900">support@bookvardi.in</p>
                   <p className="text-xs text-gray-500 mt-0.5">We reply within 24 hours</p>
                 </div>
               </div>
@@ -87,7 +87,7 @@ export default function ContactUsPage() {
                 <div>
                   <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Head Office</h4>
                   <p className="text-sm font-bold text-gray-900 leading-relaxed">
-                    School Cart Tower, Sector 14,<br />
+                    Book Vardi Tower, Sector 14,<br />
                     Gurugram, Haryana 122001
                   </p>
                 </div>
